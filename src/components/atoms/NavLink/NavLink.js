@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const NavLinkWrapper = styled.button`
+  background-color: transparent;
   color: ${({ theme }) => theme.secondary};
   border: 0;
   font-size: initial;

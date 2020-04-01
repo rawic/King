@@ -3,10 +3,10 @@ import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const ButtonWrapper = styled.button`
-  height: 43px;
+  height: 40px;
   background: ${({ color, theme }) => color || theme.highlight};
   font-family: Nunito;
-  font-weight: bold;
+  font-weight: ${({ theme }) => theme.fontWeight.bold};
   font-size: 13px;
   position: relative;
   padding-left: 20px;

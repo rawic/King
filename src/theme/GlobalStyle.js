@@ -43,6 +43,7 @@ const GlobalStyle = createGlobalStyle`
     line-height: 1.5;
     font-size: 1.6rem;
     font-family: 'Nunito', sans-serif;
+    font-variant-ligatures: no-common-ligatures;
   }
 
   /* Remove list styles on ul, ol elements with a class attribute */
