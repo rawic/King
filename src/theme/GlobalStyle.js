@@ -37,19 +37,22 @@ const GlobalStyle = createGlobalStyle`
 
   /* Set core body defaults */
   body {
+    background-color: hsl(195, 29.1%, 94.5%);
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.6rem;
+    font-variant-ligatures: no-common-ligatures;
+    line-height: 1.5;
     min-height: 100vh;
+    padding: 100px 160px;
     scroll-behavior: smooth;
     text-rendering: optimizeSpeed;
-    line-height: 1.5;
-    font-size: 1.6rem;
-    font-family: 'Nunito', sans-serif;
-    font-variant-ligatures: no-common-ligatures;
   }
 
   /* Remove list styles on ul, ol elements with a class attribute */
-  ul[class],
+  ul,
   ol[class] {
     list-style: none;
+    padding-left: 0;
   }
 
   /* A elements that don't have a class get default styles */
@@ -59,8 +62,8 @@ const GlobalStyle = createGlobalStyle`
 
   /* Make images easier to work with */
   img {
-    max-width: 100%;
     display: block;
+    max-width: 100%;
   }
 
   /* Natural flow and rhythm in articles by default */
@@ -90,9 +93,13 @@ const GlobalStyle = createGlobalStyle`
     * {
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
+      transition-duration: 0.01ms !important;
     }
+  }
+
+  .app-container {
+    background-color: hsl(0, 0%, 97.3%)
   }
 `
 

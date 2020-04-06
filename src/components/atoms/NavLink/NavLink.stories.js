@@ -6,6 +6,7 @@ export default {
   component: 'NavLink'
 }
 
+export const Active = () => <NavLink active icon="grip-horizontal">Dashboard</NavLink>
 export const Dashboard = () => <NavLink icon="grip-horizontal">Dashboard</NavLink>
 export const Analytics = () => <NavLink icon="chart-bar">Analytics</NavLink>
 export const Transactions = () => <NavLink icon="exchange-alt">Transactions</NavLink>

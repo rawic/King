@@ -1,14 +1,26 @@
 import styled, { css } from 'styled-components'
 
 const Paragraph = styled.p`
-  font-size: ${({ size, theme }) => theme.fontSize[size] || theme.fontSize.s};
-  color: ${({ color, theme }) => theme[color]};
+  ${({ small, big, theme }) => (big || small ? null : { 'font-size': theme.fontSize.s })};
+  ${({ black, theme }) => (black ? null : { color: theme.secondary })};
 
-  ${({ grey }) =>
-    grey &&
+  ${({ black }) =>
+    black &&
     css`
-      color: ${({ theme }) => theme.secondary};
-    `}
+      color: ${({ theme }) => theme.primary};
+    `};
+
+  ${({ small }) =>
+    small &&
+    css`
+      font-size: ${({ theme }) => theme.fontSize.xxs};
+    `};
+
+  ${({ big }) =>
+    big &&
+    css`
+      font-size: ${({ theme }) => theme.fontSize.m};
+    `};
 `
 
 export default Paragraph

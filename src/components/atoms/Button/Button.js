@@ -3,33 +3,33 @@ import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const ButtonWrapper = styled.button`
-  height: 40px;
   background: ${({ color, theme }) => color || theme.highlight};
-  font-family: Nunito;
-  font-weight: ${({ theme }) => theme.fontWeight.bold};
-  font-size: 13px;
-  position: relative;
-  padding-left: 20px;
-  padding-right: ${({ icon }) => (icon ? '57px' : '20px')};
-  text-align: left;
   border-radius: 6px;
   border: 0;
-  text-transform: uppercase;
   color: #ffffff;
+  font-family: Nunito;
+  font-size: 13px;
+  font-weight: ${({ theme }) => theme.fontWeight.bold};
+  height: 40px;
+  padding-left: 20px;
+  padding-right: ${({ icon }) => (icon ? '57px' : '20px')};
+  position: relative;
+  text-align: left;
+  text-transform: uppercase;
 `
 
 const IconWrapper = styled.span`
-  width: 27px;
-  height: 27px;
-  display: flex;
   align-items: center;
-  justify-content: center;
-  border-radius: 50%;
   background-color: #1f47cf;
+  border-radius: 50%;
+  display: flex;
+  height: 27px;
+  justify-content: center;
   position: absolute;
-  transform: translateY(-50%);
-  top: 50%;
   right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 27px;
 `
 
 const Button = ({ children, icon, color }) => {

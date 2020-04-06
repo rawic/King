@@ -4,9 +4,9 @@
   *,
   *::before,
   ::after {
-    box-sizing: border-box;
-    -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    box-sizing: border-box;
   }
 
   /* Remove default padding */
@@ -37,13 +37,13 @@
 
   /* Set core body defaults */
   body {
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.6rem;
+    font-variant-ligatures: no-common-ligatures;
+    line-height: 1.5;
     min-height: 100vh;
     scroll-behavior: smooth;
     text-rendering: optimizeSpeed;
-    line-height: 1.5;
-    font-size: 1.6rem;
-    font-family: 'Nunito', sans-serif;
-    font-variant-ligatures: no-common-ligatures;
   }
 
   /* Remove list styles on ul, ol elements with a class attribute */
@@ -90,8 +90,8 @@
     * {
       animation-duration: 0.01ms !important;
       animation-iteration-count: 1 !important;
-      transition-duration: 0.01ms !important;
       scroll-behavior: auto !important;
+      transition-duration: 0.01ms !important;
     }
   }
 </style>

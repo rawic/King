@@ -4,14 +4,14 @@ import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const NavLinkWrapper = styled.button`
+  align-items: center;
   background-color: transparent;
-  color: ${({ theme }) => theme.secondary};
   border: 0;
+  color: ${({ active, theme }) => (active ? theme.highlight : theme.secondary)};
+  display: flex;
+  font-family: ${({ theme }) => theme.fontFamily.primary};
   font-size: initial;
   font-weight: ${({ theme }) => theme.fontWeight.bold};
-  font-family: ${({ theme }) => theme.fontFamily.primary};
-  display: flex;
-  align-items: center;
   &:hover {
     color: ${({ theme }) => theme.highlight};
   }
@@ -24,8 +24,8 @@ const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
   margin-right: 20px;
 `
 
-const NavLink = ({ icon, children }) => (
-  <NavLinkWrapper>
+const NavLink = ({ className, active, children, icon }) => (
+  <NavLinkWrapper className={className} active={active}>
     {icon ? <StyledFontAwesomeIcon icon={icon} /> : null} {children}
   </NavLinkWrapper>
 )
@@ -33,6 +33,8 @@ const NavLink = ({ icon, children }) => (
 export default NavLink
 
 NavLink.propTypes = {
-  icon: PropTypes.string,
-  children: PropTypes.element
+  active: PropTypes.bool,
+  children: PropTypes.string,
+  className: PropTypes.string,
+  icon: PropTypes.string
 }
