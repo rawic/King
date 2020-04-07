@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { withRouter } from 'react-router'
 import { ThemeProvider } from 'styled-components'
 import GlobalStyle from 'theme/GlobalStyle'
 import { theme } from 'theme/mainTheme'
@@ -35,4 +34,4 @@ MainTemplate.propTypes = {
   children: PropTypes.array.isRequired
 }
 
-export default withRouter(MainTemplate)
+export default MainTemplate

@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import types from './types'
 
 const StyledWrapper = styled.div`
   border-bottom: 1px solid hsl(249, 30%, 95%);
@@ -47,9 +48,9 @@ const StyledTime = styled(StyledText)`
 `
 
 const StyledBadge = styled.span`
-  background-color: ${({ type }) => type.color.bg};
+  background-color: ${({ color }) => color.bg};
   border-radius: 6px;
-  color: ${({ type }) => type.color.text};
+  color: ${({ color }) => color.text};
   display: inline-block;
   font-size: ${({ theme }) => theme.fontSize.xxxs};
   font-weight: ${({ theme }) => theme.fontWeight.black};
@@ -61,22 +62,26 @@ const StyledBadge = styled.span`
   text-transform: uppercase;
 `
 
-const Notification = ({ children, type }) => (
-  <StyledWrapper>
-    <StyledMessage color={type.color.dot}>{children}</StyledMessage>
-    <StyledTextTimeWrapper>
-      <StyledText>
-        {type.name === 'outcome' && '-'}$ {type.price}
-      </StyledText>
-      <StyledTime>{type.created}</StyledTime>
-    </StyledTextTimeWrapper>
-    <StyledBadge type={type}>{type.name}</StyledBadge>
-  </StyledWrapper>
-)
+const Notification = ({ data }) => {
+  const { message, price, created, type } = data
+  const { color, message: typeMessage, name } = types[type]
+
+  return (
+    <StyledWrapper>
+      <StyledMessage color={color.dot}>{message || typeMessage}</StyledMessage>
+      <StyledTextTimeWrapper>
+        <StyledText>
+          {name === 'outcome' && '-'}$ {price}
+        </StyledText>
+        <StyledTime>{created}</StyledTime>
+      </StyledTextTimeWrapper>
+      <StyledBadge color={color}>{type}</StyledBadge>
+    </StyledWrapper>
+  )
+}
 
 Notification.propTypes = {
-  children: PropTypes.string.isRequired,
-  type: PropTypes.object.isRequired
+  data: PropTypes.object.isRequired
 }
 
 export default Notification

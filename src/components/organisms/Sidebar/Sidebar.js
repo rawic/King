@@ -1,12 +1,11 @@
 import React from 'react'
-import { NavLink as RouterNavLink } from 'react-router-dom'
 import styled, { css } from 'styled-components'
-import { theme } from 'theme/mainTheme'
-import Logo from 'components/atoms/Logo/Logo'
-import NavTitle from 'components/atoms/NavTitle/NavTitle'
+import { NavLink as RouterNavLink, Link } from 'react-router-dom'
 import LinkIcon from 'components/atoms/LinkIcon/LinkIcon'
+import Logo from 'components/atoms/Logo/Logo'
 import NavLink from 'components/atoms/NavLink/NavLink'
-import Notification from 'components/molecules/Notification/Notification'
+import NavTitle from 'components/atoms/NavTitle/NavTitle'
+import Notifications from 'components/molecules/NotificationsList/NotificationsList'
 
 const StyledWrapper = styled.div`
   background-color: hsl(0, 0%, 100%);
@@ -42,42 +41,19 @@ const StyledNavLink = styled(NavLink)`
   width: 100%;
 `
 
-const options = {
-  Income: {
-    color: {
-      bg: theme.successBg,
-      dot: theme.highlight,
-      text: theme.success
-    },
-    created: '23:42',
-    message: 'Income added',
-    name: 'income',
-    price: '45,00'
-  },
-  Outcome: {
-    color: {
-      bg: theme.errorBg,
-      dot: theme.error,
-      text: theme.error
-    },
-    created: '15:32',
-    message: 'Outcome added',
-    name: 'outcome',
-    price: '14,49'
-  }
-}
-
 const Sidebar = () => (
   <StyledWrapper>
     <StyledInnerWrapper>
-      <StyledLogo />
+      <Link to="/">
+        <StyledLogo />
+      </Link>
       <NavTitle>Navigation</NavTitle>
     </StyledInnerWrapper>
 
     <StyledNav>
       <ul>
         <li>
-          <StyledNavLink to="/" as={RouterNavLink}>
+          <StyledNavLink to="/" as={RouterNavLink} exact>
             <LinkIcon icon="grip-horizontal" text="Dashboard" />
           </StyledNavLink>
         </li>
@@ -106,12 +82,7 @@ const Sidebar = () => (
       <NavTitle>Notifications</NavTitle>
     </StyledInnerWrapper>
 
-    <Notification type={options.Income}>{options.Income.message}</Notification>
-
-    <Notification type={options.Income}>{options.Income.message}</Notification>
-
-    <Notification type={options.Outcome}>{options.Outcome.message}</Notification>
-    <StyledNavLink></StyledNavLink>
+    <Notifications />
   </StyledWrapper>
 )
 

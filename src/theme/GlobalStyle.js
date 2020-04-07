@@ -1,8 +1,6 @@
 import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle` 
-  @import url('https://fonts.googleapis.com/css?family=Nunito:300,400,600,700,800&display=swap');
-
   *, *::before, &::after {
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
@@ -103,7 +101,11 @@ const GlobalStyle = createGlobalStyle`
   }
 
   .app-container {
-    background-color: hsl(0, 0%, 97.3%)
+    background-color: hsl(0, 0%, 97.3%);
+    border-radius: 12px;
+    box-shadow: 0px 0px 73px rgba(0, 0, 0, 0.02);
+    display: flex;
+    overflow: hidden;
   }
 `
 
