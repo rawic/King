@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { withRouter } from 'react-router'
 import { ThemeProvider } from 'styled-components'
 import GlobalStyle from 'theme/GlobalStyle'
 import { theme } from 'theme/mainTheme'
@@ -23,9 +24,7 @@ class MainTemplate extends Component {
       <React.Fragment>
         <GlobalStyle />
         <ThemeProvider theme={theme}>
-          <div className="app-container">
-            {children}
-          </div>
+          <div className="app-container">{children}</div>
         </ThemeProvider>
       </React.Fragment>
     )
@@ -33,7 +32,7 @@ class MainTemplate extends Component {
 }
 
 MainTemplate.propTypes = {
-  children: PropTypes.element.isRequired
+  children: PropTypes.array.isRequired
 }
 
-export default MainTemplate
+export default withRouter(MainTemplate)

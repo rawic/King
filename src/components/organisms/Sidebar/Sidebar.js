@@ -1,8 +1,10 @@
 import React from 'react'
+import { NavLink as RouterNavLink } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 import { theme } from 'theme/mainTheme'
 import Logo from 'components/atoms/Logo/Logo'
 import NavTitle from 'components/atoms/NavTitle/NavTitle'
+import LinkIcon from 'components/atoms/LinkIcon/LinkIcon'
 import NavLink from 'components/atoms/NavLink/NavLink'
 import Notification from 'components/molecules/Notification/Notification'
 
@@ -75,19 +77,27 @@ const Sidebar = () => (
     <StyledNav>
       <ul>
         <li>
-          <StyledNavLink icon="grip-horizontal">Dashboard</StyledNavLink>
+          <StyledNavLink to="/" as={RouterNavLink}>
+            <LinkIcon icon="grip-horizontal" text="Dashboard" />
+          </StyledNavLink>
         </li>
 
         <li>
-          <StyledNavLink icon="chart-bar">Analytics</StyledNavLink>
+          <StyledNavLink to="/analytics" as={RouterNavLink}>
+            <LinkIcon icon="chart-bar" text="Analytics" />
+          </StyledNavLink>
         </li>
 
         <li>
-          <StyledNavLink icon="exchange-alt">Transactions</StyledNavLink>
+          <StyledNavLink to="/transactions" as={RouterNavLink}>
+            <LinkIcon icon="exchange-alt" text="Transactions" />
+          </StyledNavLink>
         </li>
 
         <li>
-          <StyledNavLink icon="cog">Settings</StyledNavLink>
+          <StyledNavLink to="/settings" as={RouterNavLink}>
+            <LinkIcon icon="cog" text="Settings" />
+          </StyledNavLink>
         </li>
       </ul>
     </StyledNav>
