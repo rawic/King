@@ -3,7 +3,7 @@ export const theme = {
   secondary: 'hsl(217, 31%, 69%)',
   tertiary: 'hsl(217, 35%, 37%)',
   highlight: 'hsl(226, 100%, 60%)',
-  grey100: 'hsl(0, 0%, 96%)',
+  grey100: 'hsl(0, 0%, 98%)',
   grey200: 'hsl(0, 0%, 90%)',
   success: 'hsl(126, 76%, 39%)',
   successBg: 'hsl(85, 61%, 89%)',
