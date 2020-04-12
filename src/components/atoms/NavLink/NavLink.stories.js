@@ -1,4 +1,5 @@
 import React from 'react'
+import LinkIcon from 'components/atoms/LinkIcon/LinkIcon'
 import NavLink from './NavLink'
 
 export default {
@@ -6,8 +7,28 @@ export default {
   component: 'NavLink'
 }
 
-export const Active = () => <NavLink active icon="grip-horizontal">Dashboard</NavLink>
-export const Dashboard = () => <NavLink icon="grip-horizontal">Dashboard</NavLink>
-export const Analytics = () => <NavLink icon="chart-bar">Analytics</NavLink>
-export const Transactions = () => <NavLink icon="exchange-alt">Transactions</NavLink>
-export const Settings = () => <NavLink icon="cog">Settings</NavLink>
+export const Active = () => (
+  <NavLink active>
+    <LinkIcon icon="grip-horizontal" text="Dashboard" />
+  </NavLink>
+)
+export const Dashboard = () => (
+  <NavLink>
+    <LinkIcon icon="grip-horizontal" text="Dashboard" />
+  </NavLink>
+)
+export const Analytics = () => (
+  <NavLink>
+    <LinkIcon icon="chart-bar" text="Analytics" />
+  </NavLink>
+)
+export const Transactions = () => (
+  <NavLink>
+    <LinkIcon icon="exchange-alt" text="Transactions" />
+  </NavLink>
+)
+export const Settings = () => (
+  <NavLink>
+    <LinkIcon icon="cog" text="Settings" />
+  </NavLink>
+)

@@ -6,11 +6,13 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 import { fab } from '@fortawesome/free-brands-svg-icons'
 import {
   faAngleRight,
-  faGripHorizontal,
   faChartBar,
+  faCog,
   faExchangeAlt,
-  faCog
+  faGripHorizontal,
+  faSearch,
+  faSortDown
 } from '@fortawesome/free-solid-svg-icons'
-library.add(fab, faAngleRight, faGripHorizontal, faChartBar, faExchangeAlt, faCog)
+library.add(fab, faAngleRight, faChartBar, faCog, faExchangeAlt, faGripHorizontal, faSearch, faSortDown)
 
 addDecorator((storyFn) => <ThemeProvider theme={theme}>{storyFn()}</ThemeProvider>)

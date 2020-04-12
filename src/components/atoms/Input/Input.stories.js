@@ -13,6 +13,12 @@ const StyledWrapper = styled.div`
 
 export const Default = () => (
   <StyledWrapper>
-    <Input label="Transaction name" placeholder="Netflix subscription"></Input>
+    <Input label="Transaction name" placeholder="Netflix subscription" />
+  </StyledWrapper>
+)
+
+export const Search = () => (
+  <StyledWrapper>
+    <Input icon="search" placeholder="Search transactions..." search />
   </StyledWrapper>
 )
