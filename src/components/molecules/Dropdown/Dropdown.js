@@ -1,14 +1,15 @@
-import React, { Component } from 'react'
+import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import ReactPerformance from 'react-performance'
 import Option from './Option'
 
 const StyledDropdown = styled.div`
   background-color: white;
-  border-radius: .6rem;
-  box-shadow: 0 .2rem .4rem hsla(0, 0%, 0%, 0.08);
-  padding-bottom: .4rem;
-  padding-top: .4rem;
+  border-radius: 0.6rem;
+  box-shadow: 0 0.2rem 0.4rem hsla(0, 0%, 0%, 0.08);
+  padding-bottom: 0.4rem;
+  padding-top: 0.4rem;
   position: absolute;
   right: 0;
   top: 100%;
@@ -22,7 +23,7 @@ const StyledList = styled.ul`
   text-align: right;
 `
 
-class Dropdown extends Component {
+class Dropdown extends PureComponent {
   static propTypes = {
     content: PropTypes.string,
     trigger: PropTypes.func.isRequired
@@ -30,7 +31,7 @@ class Dropdown extends Component {
 
   state = {
     opened: false,
-    options: ['Incomes', 'Outcomes'],
+    options: this.props.options,
     selected: null
   }
 
@@ -55,12 +56,17 @@ class Dropdown extends Component {
   }
 
   toggleDropdown = () => {
+    ReactPerformance.startRecording()
     this.setState({
       opened: !this.state.opened
     })
   }
 
   changeSelected = (value) => () => {
+    if (value === this.state.selected) {
+      return
+    }
+
     this.setState({
       opened: false,
       selected: value
@@ -92,4 +98,8 @@ class Dropdown extends Component {
   }
 }
 
-export default Dropdown
+export default ReactPerformance.measure({
+  getId: 'Dropdown',
+  Component: Dropdown,
+  isCollapsed: false
+})

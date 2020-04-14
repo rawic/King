@@ -1,11 +1,12 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
+import ReactPerformance from 'react-performance'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Dropdown from 'components/molecules/Dropdown/Dropdown'
 
 const StyledGroup = styled.div`
-  &:not(:first-child) {
+  & + & {
     margin-top: 2rem;
   }
 `
@@ -98,14 +99,16 @@ const FilterButton = ({ handleDropdownClick, children }) => (
   </StyledFiltersButton>
 )
 
-const Input = ({ label, icon, placeholder, search }) => {
+const searchFilterOptions = ['Incomes', 'Outcomes', 'All']
+
+const Input = ({ className, label, icon, placeholder, search }) => {
   const inputTemplate = icon ? (
     <StyledWrapper>
       <StyledInput placeholder={placeholder} icon={icon} search={search} />
       <StyledFontAwesomeIcon icon={icon} />
       {search && (
         <StyledFilterButton>
-          <Dropdown trigger={FilterButton} content="Filter" />
+          <Dropdown content="Filter" trigger={FilterButton} options={searchFilterOptions} />
         </StyledFilterButton>
       )}
     </StyledWrapper>
@@ -114,7 +117,7 @@ const Input = ({ label, icon, placeholder, search }) => {
   )
 
   return (
-    <StyledGroup>
+    <StyledGroup className={className}>
       {label && <StyledLabel>{label}</StyledLabel>}
       {inputTemplate}
     </StyledGroup>
@@ -133,4 +136,8 @@ Input.propTypes = {
   search: PropTypes.bool
 }
 
-export default Input
+export default ReactPerformance.measure({
+  getId: 'Input',
+  Component: Input,
+  isCollapsed: false
+})
