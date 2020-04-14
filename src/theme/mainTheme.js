@@ -3,6 +3,7 @@ export const theme = {
   secondary: 'hsl(217, 31%, 69%)',
   tertiary: 'hsl(217, 35%, 37%)',
   highlight: 'hsl(226, 100%, 60%)',
+  highlightDarker: 'hsl(226, 100%, 55%)',
   grey100: 'hsl(0, 0%, 98%)',
   grey200: 'hsl(0, 0%, 90%)',
   success: 'hsl(126, 76%, 39%)',
@@ -12,14 +13,7 @@ export const theme = {
   fontFamily: {
     primary: '"Nunito", sans-serif'
   },
-  fontWeight: {
-    light: '300',
-    regular: '400',
-    bold: '600',
-    extraBold: '700',
-    black: '800'
-  },
-  space: {
+  fontSize: {
     xxxs: '1rem',
     xxs: '1.2rem',
     xs: '1.3rem',
@@ -29,7 +23,14 @@ export const theme = {
     l: '1.8rem',
     xl: '2.4rem'
   },
-  fontSize: {
+  fontWeight: {
+    light: '300',
+    regular: '400',
+    bold: '600',
+    extraBold: '700',
+    black: '800'
+  },
+  space: {
     xxxs: '1rem',
     xxs: '1.2rem',
     xs: '1.3rem',

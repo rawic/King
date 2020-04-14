@@ -10,9 +10,9 @@ import Settings from './Settings'
 
 const AppContent = styled.section`
   background-color: white;
-  border-radius: 12px;
-  margin: 30px;
-  padding: 30px;
+  border-radius: 1.2rem;
+  margin: 3rem;
+  padding: 3rem;
   width: 100%;
 `
 

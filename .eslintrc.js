@@ -15,6 +15,7 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module'
   },
+  parser: 'babel-eslint',
   plugins: ['react'],
   rules: {
     'space-before-function-paren': ['error', 'never']

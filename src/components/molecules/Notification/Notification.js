@@ -7,9 +7,9 @@ const StyledWrapper = styled.div`
   border-bottom: 1px solid hsl(249, 30%, 95%);
   border-top: 1px solid hsl(249, 30%, 95%);
   color: ${({ theme }) => theme.secondary};
-  padding: 13px 35px;
+  padding: 1.3rem 3.5rem;
   &:not(:first-child) {
-    margin-top: -1px;
+    margin-top: -.1rem;
   }
   &:hover {
     background-color: hsl(210, 66.7%, 98.8%);
@@ -25,11 +25,11 @@ const StyledMessage = styled.p`
     background-color: ${({ color }) => color};
     border-radius: 50%;
     display: block;
-    height: 8px;
-    left: -17px;
+    height: .8rem;
+    left: -1.7rem;
     position: absolute;
-    top: 7px;
-    width: 8px;
+    top: .7rem;
+    width: .8rem;
   }
 `
 
@@ -49,16 +49,16 @@ const StyledTime = styled(StyledText)`
 
 const StyledBadge = styled.span`
   background-color: ${({ color }) => color.bg};
-  border-radius: 6px;
+  border-radius: .6rem;
   color: ${({ color }) => color.text};
   display: inline-block;
   font-size: ${({ theme }) => theme.fontSize.xxxs};
   font-weight: ${({ theme }) => theme.fontWeight.black};
-  height: 19px;
-  line-height: 20px;
-  margin-top: 7px;
-  padding-left: 10px;
-  padding-right: 10px;
+  height: 1.9rem;
+  line-height: 2rem;
+  margin-top: .7rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
   text-transform: uppercase;
 `
 

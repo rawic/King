@@ -1,7 +1,8 @@
 import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import Dropdown from 'components/molecules/Dropdown/Dropdown'
 
 const StyledGroup = styled.div`
   &:not(:first-child) {
@@ -76,15 +77,26 @@ const StyledFiltersButton = styled.button`
   font-size: ${({ theme }) => theme.fontSize.s};
   font-weight: ${({ theme }) => theme.fontWeight.extraBold};
   padding: 0.5rem 1.5rem;
+
+  &:focus {
+    background-color: ${({ theme }) => theme.highlightDarker};
+    outline: none;
+  }
+`
+
+const StyledFilterButton = styled.div`
   position: absolute;
   right: 2rem;
   top: 50%;
   transform: translateY(-50%);
-
-  &:focus {
-    outline: none;
-  }
 `
+
+const FilterButton = ({ handleDropdownClick, children }) => (
+  <StyledFiltersButton onClick={handleDropdownClick}>
+    {children} &nbsp;
+    <FontAwesomeIcon icon="sort-down" />
+  </StyledFiltersButton>
+)
 
 const Input = ({ label, icon, placeholder, search }) => {
   const inputTemplate = icon ? (
@@ -92,9 +104,9 @@ const Input = ({ label, icon, placeholder, search }) => {
       <StyledInput placeholder={placeholder} icon={icon} search={search} />
       <StyledFontAwesomeIcon icon={icon} />
       {search && (
-        <StyledFiltersButton>
-          Filters &nbsp;<FontAwesomeIcon icon="sort-down" />
-        </StyledFiltersButton>
+        <StyledFilterButton>
+          <Dropdown trigger={FilterButton} content="Filter" />
+        </StyledFilterButton>
       )}
     </StyledWrapper>
   ) : (
@@ -109,10 +121,15 @@ const Input = ({ label, icon, placeholder, search }) => {
   )
 }
 
+FilterButton.propTypes = {
+  children: PropTypes.string.isRequired,
+  handleDropdownClick: PropTypes.func.isRequired
+}
+
 Input.propTypes = {
+  icon: PropTypes.string,
   label: PropTypes.string,
   placeholder: PropTypes.string,
-  icon: PropTypes.string,
   search: PropTypes.bool
 }
 

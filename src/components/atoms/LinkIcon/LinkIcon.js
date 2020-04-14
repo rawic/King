@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
-  margin-right: 20px;
+  margin-right: 2rem;
 `
 
 const LinkIcon = ({ icon, text }) => (

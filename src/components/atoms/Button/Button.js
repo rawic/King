@@ -4,15 +4,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const ButtonWrapper = styled.button`
   background: ${({ color, theme }) => color || theme.highlight};
-  border-radius: 6px;
+  border-radius: .6rem;
   border: 0;
   color: #ffffff;
   font-family: Nunito;
-  font-size: 13px;
+  font-size: ${({ theme }) => theme.fontSize.xs};
   font-weight: ${({ theme }) => theme.fontWeight.bold};
-  height: 40px;
-  padding-left: 20px;
-  padding-right: ${({ icon }) => (icon ? '57px' : '20px')};
+  height: 4rem;
+  padding-left: 2rem;
+  padding-right: ${({ icon }) => (icon ? '5.7rem' : '2rem')};
   position: relative;
   text-align: left;
   text-transform: uppercase;
@@ -23,13 +23,13 @@ const IconWrapper = styled.span`
   background-color: #1f47cf;
   border-radius: 50%;
   display: flex;
-  height: 27px;
+  height: 2.7rem;
   justify-content: center;
   position: absolute;
-  right: 14px;
+  right: 1.4rem;
   top: 50%;
   transform: translateY(-50%);
-  width: 27px;
+  width: 2.7rem;
 `
 
 const Button = ({ children, icon, color }) => {
