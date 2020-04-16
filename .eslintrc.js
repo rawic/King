@@ -18,6 +18,7 @@ module.exports = {
   parser: 'babel-eslint',
   plugins: ['react'],
   rules: {
-    'space-before-function-paren': ['error', 'never']
+    'space-before-function-paren': ['error', 'never'],
+    'react/display-name': 'off'
   }
 }

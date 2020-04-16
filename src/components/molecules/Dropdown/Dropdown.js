@@ -26,6 +26,8 @@ const StyledList = styled.ul`
 class Dropdown extends PureComponent {
   static propTypes = {
     content: PropTypes.string,
+    onChange: PropTypes.func.isRequired,
+    options: PropTypes.array.isRequired,
     trigger: PropTypes.func.isRequired
   }
 
@@ -71,6 +73,8 @@ class Dropdown extends PureComponent {
       opened: false,
       selected: value
     })
+
+    this.props.onChange(value)
   }
 
   render() {

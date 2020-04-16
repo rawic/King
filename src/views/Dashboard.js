@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import DashboardContext from 'context/DashboardContext'
 import Heading from 'components/atoms/Heading/Heading'
 import Paragraph from 'components/atoms/Paragraph/Paragraph'
 import Input from 'components/atoms/Input/Input'
@@ -29,29 +30,60 @@ const StyledInput = styled(Input)`
 const titles = ['King', 'Prince', 'Princess', 'Queen']
 const title = titles[Math.floor(Math.random() * titles.length)]
 
-const Welcome = ({ title }) => (
-  <Paragraph big>
-    <StyledWelcome>
-      Hello, <StyledTitle>{title}</StyledTitle>
-    </StyledWelcome>
-    . Here’s general overview.
-  </Paragraph>
-)
+const Header = React.memo(({ title }) => {
+  return (
+    <div>
+      <Heading>Dashboard</Heading>
+      <Paragraph big>
+        <StyledWelcome>
+          Hello, <StyledTitle>{title}</StyledTitle>
+        </StyledWelcome>
+        . Here’s general overview.
+      </Paragraph>
+    </div>
+  )
+})
 
-const Dashboard = () => (
-  <>
-    <StyledHeaderWrapper>
-      <div>
-        <Heading>Dashboard</Heading>
-        <Welcome title={title}></Welcome>
-      </div>
+class Dashboard extends React.PureComponent {
+  state = {
+    search: {
+      filterBy: '',
+      value: ''
+    }
+  }
 
-      <StyledInput icon="search" placeholder="Search transactions..." search />
-    </StyledHeaderWrapper>
-  </>
-)
+  updateSearch = (filter) => {
+    const search = { ...this.state.search }
+    search.filterBy = filter
+    this.setState({ search })
+  }
 
-Welcome.propTypes = {
+  updateSearchInput = (e) => {
+    const search = { ...this.state.search }
+    search.value = e.target.value
+    this.setState({ search })
+  }
+
+  render() {
+    return (
+      <StyledHeaderWrapper>
+        <Header title={title} />
+
+        <DashboardContext.Provider
+          value={{
+            ...this.state,
+            updateSearch: this.updateSearch,
+            updateSearchInput: this.updateSearchInput
+          }}
+        >
+          <StyledInput icon="search" placeholder="Search transactions..." search />
+        </DashboardContext.Provider>
+      </StyledHeaderWrapper>
+    )
+  }
+}
+
+Header.propTypes = {
   title: PropTypes.string.isRequired
 }
 

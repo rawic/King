@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import PropTypes from 'prop-types'
 import styled, { css } from 'styled-components'
 import ReactPerformance from 'react-performance'
+import DashboardContext from 'context/DashboardContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Dropdown from 'components/molecules/Dropdown/Dropdown'
 
@@ -57,6 +58,10 @@ const StyledInput = styled.input`
   ${({ search }) =>
     search &&
     css`
+      & {
+        padding-right: 15rem;
+      }
+      ,
       &,
       &::placeholder {
         font-size: ${({ theme }) => theme.fontSize.s};
@@ -102,19 +107,40 @@ const FilterButton = ({ handleDropdownClick, children }) => (
 const searchFilterOptions = ['Incomes', 'Outcomes', 'All']
 
 const Input = ({ className, label, icon, placeholder, search }) => {
-  const inputTemplate = icon ? (
-    <StyledWrapper>
-      <StyledInput placeholder={placeholder} icon={icon} search={search} />
-      <StyledFontAwesomeIcon icon={icon} />
-      {search && (
+  const searchState = useContext(DashboardContext)
+  let inputTemplate = null
+
+  if (search) {
+    inputTemplate = (
+      <StyledWrapper>
+        <StyledInput
+          placeholder={placeholder}
+          icon={icon}
+          search={search}
+          onChange={searchState.updateSearchInput}
+        />
+        <StyledFontAwesomeIcon icon={icon} />
+
         <StyledFilterButton>
-          <Dropdown content="Filter" trigger={FilterButton} options={searchFilterOptions} />
+          <Dropdown
+            content="Filter"
+            trigger={FilterButton}
+            options={searchFilterOptions}
+            onChange={searchState.updateSearch}
+          />
         </StyledFilterButton>
-      )}
-    </StyledWrapper>
-  ) : (
-    <StyledInput placeholder={placeholder} icon={icon} />
-  )
+      </StyledWrapper>
+    )
+  } else {
+    inputTemplate = icon ? (
+      <StyledWrapper>
+        <StyledInput placeholder={placeholder} icon={icon} />
+        <StyledFontAwesomeIcon icon={icon} />
+      </StyledWrapper>
+    ) : (
+      <StyledInput placeholder={placeholder} />
+    )
+  }
 
   return (
     <StyledGroup className={className}>
@@ -130,6 +156,7 @@ FilterButton.propTypes = {
 }
 
 Input.propTypes = {
+  className: PropTypes.string,
   icon: PropTypes.string,
   label: PropTypes.string,
   placeholder: PropTypes.string,

@@ -6,6 +6,7 @@ const SummaryBar = styled.section`
   border-top-right-radius: 1.2rem;
   flex: 1 0 auto;
   margin-bottom: 3rem;
+  margin-right: 3rem;
   margin-top: 3rem;
   padding: 3rem;
   width: 290px;
