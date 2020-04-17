@@ -66,6 +66,10 @@ class Dropdown extends PureComponent {
 
   changeSelected = (value) => () => {
     if (value === this.state.selected) {
+      this.setState({
+        opened: false
+      })
+
       return
     }
 

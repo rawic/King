@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import DashboardContext from 'context/DashboardContext'
+import { connect } from 'react-redux'
 import Heading from 'components/atoms/Heading/Heading'
 import Paragraph from 'components/atoms/Paragraph/Paragraph'
 import Search from 'components/molecules/Search/Search'
@@ -68,16 +68,7 @@ class Dashboard extends React.PureComponent {
     return (
       <StyledHeaderWrapper>
         <Header title={title} />
-
-        <DashboardContext.Provider
-          value={{
-            ...this.state,
-            updateSearch: this.updateSearch,
-            updateSearchInput: this.updateSearchInput
-          }}
-        >
-          <StyledInput icon="search" placeholder="Search transactions..." search />
-        </DashboardContext.Provider>
+        <StyledInput icon="search" placeholder="Search transactions..." search />
       </StyledHeaderWrapper>
     )
   }
@@ -87,4 +78,12 @@ Header.propTypes = {
   title: PropTypes.string.isRequired
 }
 
-export default Dashboard
+const mapStateToProps = (state) => {
+  return {
+    search: state.search.value
+  }
+}
+
+const DashboardContainer = connect(mapStateToProps)(Dashboard)
+
+export default DashboardContainer

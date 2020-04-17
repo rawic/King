@@ -1,7 +1,8 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
+import { useDispatch } from 'react-redux'
+import { updateSearchFilter, updateSearchValue } from 'redux/actions'
 import styled from 'styled-components'
-import DashboardContext from 'context/DashboardContext'
 import Input from 'components/atoms/Input/Input'
 import Dropdown from 'components/molecules/Dropdown/Dropdown'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -60,19 +61,23 @@ const FilterButton = ({ handleDropdownClick, children }) => (
 const searchFilterOptions = ['Incomes', 'Outcomes', 'All']
 
 const Search = ({ ...props }) => {
-  const searchState = useContext(DashboardContext)
+  const dispatch = useDispatch()
+
+  const handleValueChange = (e) => dispatch(updateSearchValue(e.target.value))
+
+  const handleFilterChange = (fiter) => dispatch(updateSearchFilter(fiter))
 
   return (
     <>
       <StyledWrapper>
-        <StyledInput {...props} onChange={searchState.updateSearchInput} />
+        <StyledInput {...props} onChange={handleValueChange} />
 
         <StyledFilterButton>
           <Dropdown
             content="Filter"
             trigger={FilterButton}
             options={searchFilterOptions}
-            onChange={searchState.updateSearch}
+            onChange={handleFilterChange}
           />
         </StyledFilterButton>
       </StyledWrapper>
@@ -85,4 +90,4 @@ FilterButton.propTypes = {
   handleDropdownClick: PropTypes.func.isRequired
 }
 
-export default Search
+export default React.memo(Search)

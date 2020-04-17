@@ -54,10 +54,10 @@ const StyledInput = styled.input`
     `}
 `
 
-const Input = ({ className, label, icon, placeholder, search }) => {
+const Input = ({ className, label, icon, placeholder, onChange }) => {
   const inputTemplate = icon ? (
     <StyledWrapper>
-      <StyledInput placeholder={placeholder} icon={icon} />
+      <StyledInput placeholder={placeholder} icon={icon} onChange={onChange} />
       <StyledFontAwesomeIcon icon={icon} />
     </StyledWrapper>
   ) : (
@@ -76,6 +76,7 @@ Input.propTypes = {
   className: PropTypes.string,
   icon: PropTypes.string,
   label: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
   search: PropTypes.bool
 }
