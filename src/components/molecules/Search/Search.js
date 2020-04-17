@@ -65,7 +65,7 @@ const Search = ({ ...props }) => {
 
   const handleValueChange = (e) => dispatch(updateSearchValue(e.target.value))
 
-  const handleFilterChange = (fiter) => dispatch(updateSearchFilter(fiter))
+  const handleFilterChange = (filter) => dispatch(updateSearchFilter(filter))
 
   return (
     <>
