@@ -4,7 +4,7 @@ import styled from 'styled-components'
 import DashboardContext from 'context/DashboardContext'
 import Heading from 'components/atoms/Heading/Heading'
 import Paragraph from 'components/atoms/Paragraph/Paragraph'
-import Input from 'components/atoms/Input/Input'
+import Search from 'components/molecules/Search/Search'
 
 const StyledHeaderWrapper = styled.div`
   align-items: center;
@@ -22,9 +22,10 @@ const StyledTitle = styled.b`
   font-weight: ${({ theme }) => theme.fontWeight.extraBold};
 `
 
-const StyledInput = styled(Input)`
+const StyledInput = styled(Search)`
   max-width: 420px;
   width: 100%;
+  margin-left: auto;
 `
 
 const titles = ['King', 'Prince', 'Princess', 'Queen']
@@ -43,7 +44,6 @@ const Header = React.memo(({ title }) => {
     </div>
   )
 })
-
 class Dashboard extends React.PureComponent {
   state = {
     search: {
