@@ -18,4 +18,30 @@ it('renders without crashing', () => {
   ).toBe(true)
 })
 
-test('fake test', () => expect(2).toBeTruthy())
+it('should toggle search filter dropdown on click', () => {
+  const dropdown = shallow(
+    <Dropdown
+      content="Filter"
+      trigger={FilterButton}
+      options={searchFilterOptions}
+      onChange={handleFilterChange}
+    />
+  )
+
+  const toggleOpened = () =>
+    dropdown.setState((prevState) => {
+      return { opened: !prevState.opened }
+    })
+
+  const filterButton = shallow(
+    <FilterButton isOpened={false} handleDropdownClick={toggleOpened}>
+      Filter
+    </FilterButton>
+  )
+
+  expect(dropdown.state().opened).toEqual(false)
+  filterButton.simulate('click')
+  expect(dropdown.state().opened).toEqual(true)
+  filterButton.simulate('click')
+  expect(dropdown.state().opened).toEqual(false)
+})
