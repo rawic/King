@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import ReactPerformance from 'react-performance'
+import { closeDropdown } from './utils/'
 import Option from './Option'
 
 const StyledDropdown = styled.div`
@@ -45,55 +46,50 @@ class Dropdown extends PureComponent {
     document.removeEventListener('click', this.handleClickOutside)
   }
 
-  setWrapperRef = (node) => {
-    this.wrapperRef = node
-  }
-
-  handleClickOutside = (event) => {
-    if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
-      this.setState({
-        opened: false
-      })
-    }
-  }
-
-  toggleDropdown = () => {
-    ReactPerformance.startRecording()
-    this.setState({
-      opened: !this.state.opened
-    })
-  }
-
   changeSelected = (value) => () => {
-    if (value === this.state.selected) {
-      this.setState({
-        opened: false
-      })
+    this.setState(closeDropdown)
 
-      return
-    }
+    if (value === this.state.selected) return
 
     this.setState({
-      opened: false,
       selected: value
     })
 
     this.props.onChange(value)
   }
 
+  handleClickOutside = (event) => {
+    if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
+      this.setState(closeDropdown)
+    }
+  }
+
+  toggleDropdown = () => {
+    ReactPerformance.startRecording()
+    this.setState((state) => ({
+      opened: !state.opened
+    }))
+  }
+
+  setWrapperRef = (node) => {
+    this.wrapperRef = node
+  }
+
   render() {
     const TriggerElement = this.props.trigger
+    const { opened, options, selected } = this.state
+    const { content } = this.props
 
     return (
       <div ref={this.setWrapperRef}>
-        <TriggerElement handleDropdownClick={this.toggleDropdown}>
-          {this.state.selected ? this.state.selected : this.props.content}
+        <TriggerElement handleDropdownClick={this.toggleDropdown} isOpened={opened}>
+          {selected || content}
         </TriggerElement>
 
-        {this.state.opened && (
+        {opened && (
           <StyledDropdown>
             <StyledList>
-              {this.state.options.map((option, i) => (
+              {options.map((option, i) => (
                 <Option key={i} changeSelected={this.changeSelected}>
                   {option}
                 </Option>

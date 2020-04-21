@@ -1,10 +1,9 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { useDispatch } from 'react-redux'
-import { updateSearchFilter, updateSearchValue } from 'redux/actions'
 import styled from 'styled-components'
 import Input from 'components/atoms/Input/Input'
 import Dropdown from 'components/molecules/Dropdown/Dropdown'
+import { handleFilterChange, handleValueChange } from './utils'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const StyledWrapper = styled.div`
@@ -51,43 +50,39 @@ const StyledFilterButton = styled.div`
   transform: translateY(-50%);
 `
 
-const FilterButton = ({ handleDropdownClick, children }) => (
-  <StyledFiltersButton onClick={handleDropdownClick}>
-    {children} &nbsp;
-    <FontAwesomeIcon icon="sort-down" />
-  </StyledFiltersButton>
-)
+export const FilterButton = ({ children, handleDropdownClick, isOpened }) => {
+  return (
+    <StyledFiltersButton onClick={handleDropdownClick}>
+      {children} &nbsp;
+      {isOpened ? <FontAwesomeIcon icon="sort-up" /> : <FontAwesomeIcon icon="sort-down" />}
+    </StyledFiltersButton>
+  )
+}
 
-const searchFilterOptions = ['Incomes', 'Outcomes', 'All']
+// TODO:
+export const searchFilterOptions = ['Incomes', 'Outcomes', 'All']
 
 const Search = ({ ...props }) => {
-  const dispatch = useDispatch()
-
-  const handleValueChange = (e) => dispatch(updateSearchValue(e.target.value))
-
-  const handleFilterChange = (filter) => dispatch(updateSearchFilter(filter))
-
   return (
-    <>
-      <StyledWrapper>
-        <StyledInput {...props} onChange={handleValueChange} />
+    <StyledWrapper>
+      <StyledInput {...props} onChange={handleValueChange} />
 
-        <StyledFilterButton>
-          <Dropdown
-            content="Filter"
-            trigger={FilterButton}
-            options={searchFilterOptions}
-            onChange={handleFilterChange}
-          />
-        </StyledFilterButton>
-      </StyledWrapper>
-    </>
+      <StyledFilterButton>
+        <Dropdown
+          content="Filter"
+          trigger={FilterButton}
+          options={searchFilterOptions}
+          onChange={handleFilterChange}
+        />
+      </StyledFilterButton>
+    </StyledWrapper>
   )
 }
 
 FilterButton.propTypes = {
   children: PropTypes.string.isRequired,
-  handleDropdownClick: PropTypes.func.isRequired
+  handleDropdownClick: PropTypes.func.isRequired,
+  isOpened: PropTypes.bool.isRequired
 }
 
 export default React.memo(Search)

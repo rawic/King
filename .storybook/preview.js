@@ -11,8 +11,19 @@ import {
   faExchangeAlt,
   faGripHorizontal,
   faSearch,
-  faSortDown
+  faSortDown,
+  faSortUp
 } from '@fortawesome/free-solid-svg-icons'
-library.add(fab, faAngleRight, faChartBar, faCog, faExchangeAlt, faGripHorizontal, faSearch, faSortDown)
+library.add(
+  fab,
+  faAngleRight,
+  faChartBar,
+  faCog,
+  faExchangeAlt,
+  faGripHorizontal,
+  faSearch,
+  faSortDown,
+  faSortUp
+)
 
 addDecorator((storyFn) => <ThemeProvider theme={theme}>{storyFn()}</ThemeProvider>)
