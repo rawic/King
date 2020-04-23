@@ -1,5 +1,6 @@
-import React from 'react'
 import LinkIcon from 'components/atoms/LinkIcon/LinkIcon'
+import React from 'react'
+
 import NavLink from './NavLink'
 
 export default {

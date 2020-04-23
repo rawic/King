@@ -1,9 +1,10 @@
-import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import React, { PureComponent } from 'react'
 import ReactPerformance from 'react-performance'
-import { closeDropdown } from './utils/'
+import styled from 'styled-components'
+
 import Option from './Option'
+import { closeDropdown } from './utils/'
 
 const StyledDropdown = styled.div`
   background-color: white;
@@ -87,10 +88,14 @@ class Dropdown extends PureComponent {
         </TriggerElement>
 
         {opened && (
-          <StyledDropdown>
+          <StyledDropdown data-testid="dropdown">
             <StyledList>
               {options.map((option, i) => (
-                <Option key={i} changeSelected={this.changeSelected}>
+                <Option
+                  key={i}
+                  changeSelected={this.changeSelected}
+                  testId={`dropdown-option-${i}`}
+                >
                   {option}
                 </Option>
               ))}

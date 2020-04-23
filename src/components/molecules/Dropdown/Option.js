@@ -1,5 +1,5 @@
-import React from 'react'
 import PropTypes from 'prop-types'
+import React from 'react'
 import styled from 'styled-components'
 
 const StyledOption = styled.li`
@@ -11,13 +11,16 @@ const StyledOption = styled.li`
   }
 `
 
-const Option = ({ children, changeSelected }) => (
-  <StyledOption onClick={changeSelected(children)}>{children}</StyledOption>
+const Option = ({ children, changeSelected, testId }) => (
+  <StyledOption onClick={changeSelected(children)} data-testid={testId}>
+    {children}
+  </StyledOption>
 )
 
 Option.propTypes = {
   changeSelected: PropTypes.func.isRequired,
-  children: PropTypes.string.isRequired
+  children: PropTypes.string.isRequired,
+  testId: PropTypes.string
 }
 
 export default Option

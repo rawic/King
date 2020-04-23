@@ -17,9 +17,15 @@ module.exports = {
     sourceType: 'module'
   },
   parser: 'babel-eslint',
-  plugins: ['react'],
+  plugins: ['react', 'import', 'simple-import-sort'],
   rules: {
     'space-before-function-paren': ['error', 'never'],
-    'react/display-name': 'off'
+    'react/display-name': 'off',
+    'simple-import-sort/sort': 'error',
+    'sort-imports': 'off',
+    'import/order': 'off',
+    'import/first': 'error',
+    'import/newline-after-import': 'error',
+    'import/no-duplicates': 'error'
   }
 }

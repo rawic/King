@@ -1,10 +1,10 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import styled from 'styled-components'
-import { connect } from 'react-redux'
 import Heading from 'components/atoms/Heading/Heading'
 import Paragraph from 'components/atoms/Paragraph/Paragraph'
 import Search from 'components/molecules/Search/Search'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { connect } from 'react-redux'
+import styled from 'styled-components'
 
 const StyledHeaderWrapper = styled.div`
   align-items: center;

@@ -1,6 +1,7 @@
-import React from 'react'
 import PropTypes from 'prop-types'
+import React from 'react'
 import styled from 'styled-components'
+
 import types from './types'
 
 const StyledWrapper = styled.div`
@@ -9,7 +10,7 @@ const StyledWrapper = styled.div`
   color: ${({ theme }) => theme.secondary};
   padding: 1.3rem 3.5rem;
   &:not(:first-child) {
-    margin-top: -.1rem;
+    margin-top: -0.1rem;
   }
   &:hover {
     background-color: hsl(210, 66.7%, 98.8%);
@@ -25,11 +26,11 @@ const StyledMessage = styled.p`
     background-color: ${({ color }) => color};
     border-radius: 50%;
     display: block;
-    height: .8rem;
+    height: 0.8rem;
     left: -1.7rem;
     position: absolute;
-    top: .7rem;
-    width: .8rem;
+    top: 0.7rem;
+    width: 0.8rem;
   }
 `
 
@@ -49,14 +50,14 @@ const StyledTime = styled(StyledText)`
 
 const StyledBadge = styled.span`
   background-color: ${({ color }) => color.bg};
-  border-radius: .6rem;
+  border-radius: 0.6rem;
   color: ${({ color }) => color.text};
   display: inline-block;
   font-size: ${({ theme }) => theme.fontSize.xxxs};
   font-weight: ${({ theme }) => theme.fontWeight.black};
   height: 1.9rem;
   line-height: 2rem;
-  margin-top: .7rem;
+  margin-top: 0.7rem;
   padding-left: 1rem;
   padding-right: 1rem;
   text-transform: uppercase;

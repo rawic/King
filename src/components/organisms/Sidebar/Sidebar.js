@@ -1,11 +1,11 @@
-import React from 'react'
-import styled, { css } from 'styled-components'
-import { NavLink as RouterNavLink, Link } from 'react-router-dom'
 import LinkIcon from 'components/atoms/LinkIcon/LinkIcon'
 import Logo from 'components/atoms/Logo/Logo'
 import NavLink from 'components/atoms/NavLink/NavLink'
 import NavTitle from 'components/atoms/NavTitle/NavTitle'
 import Notifications from 'components/molecules/NotificationsList/NotificationsList'
+import React from 'react'
+import { Link, NavLink as RouterNavLink } from 'react-router-dom'
+import styled, { css } from 'styled-components'
 
 const StyledWrapper = styled.div`
   background-color: hsl(0, 0%, 100%);
@@ -37,7 +37,7 @@ const StyledNav = styled.nav`
 
 const StyledNavLink = styled(NavLink)`
   margin-top: 2rem;
-  padding: .5rem 3.5rem;
+  padding: 0.5rem 3.5rem;
   width: 100%;
 `
 
