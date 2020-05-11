@@ -3,7 +3,9 @@ import Logo from 'components/atoms/Logo/Logo'
 import NavLink from 'components/atoms/NavLink/NavLink'
 import NavTitle from 'components/atoms/NavTitle/NavTitle'
 import Notifications from 'components/molecules/NotificationsList/NotificationsList'
+import PropTypes from 'prop-types'
 import React from 'react'
+import { connect } from 'react-redux'
 import { Link, NavLink as RouterNavLink } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 
@@ -41,7 +43,7 @@ const StyledNavLink = styled(NavLink)`
   width: 100%;
 `
 
-const Sidebar = () => (
+const Sidebar = ({ notifications }) => (
   <StyledWrapper>
     <StyledInnerWrapper>
       <Link to="/">
@@ -82,8 +84,20 @@ const Sidebar = () => (
       <NavTitle>Notifications</NavTitle>
     </StyledInnerWrapper>
 
-    <Notifications />
+    <Notifications notifications={notifications} />
   </StyledWrapper>
 )
 
-export default Sidebar
+Sidebar.propTypes = {
+  notifications: PropTypes.array.isRequired
+}
+
+const mapStateToProps = (state) => {
+  return {
+    notifications: state.notifications
+  }
+}
+
+const SidebarContainer = connect(mapStateToProps)(Sidebar)
+
+export default SidebarContainer

@@ -30,14 +30,24 @@ export const theme = {
     extraBold: '700',
     black: '800'
   },
-  space: {
-    xxxs: '1rem',
-    xxs: '1.2rem',
-    xs: '1.3rem',
-    s: '1.4rem',
-    sm: '1.5rem',
-    m: '1.6rem',
-    l: '1.8rem',
-    xl: '2.4rem'
+  zindex: {
+    dropdown: '99'
+  }
+}
+
+export const transactionTheme = {
+  income: {
+    colors: {
+      bg: theme.successBg,
+      dot: theme.highlight,
+      text: theme.success
+    }
+  },
+  outcome: {
+    colors: {
+      bg: theme.errorBg,
+      dot: theme.error,
+      text: theme.error
+    }
   }
 }

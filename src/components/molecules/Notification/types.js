@@ -1,22 +1,10 @@
-import { theme } from 'theme/mainTheme'
-
-const types = {
+export const notificationTypes = {
   income: {
-    color: {
-      bg: theme.successBg,
-      dot: theme.highlight,
-      text: theme.success
-    },
+    name: 'Income',
     message: 'Income added'
   },
   outcome: {
-    color: {
-      bg: theme.errorBg,
-      dot: theme.error,
-      text: theme.error
-    },
+    name: 'Outcome',
     message: 'Outcome added'
   }
 }
-
-export default types

@@ -1,8 +1,10 @@
+import Badge from 'components/atoms/Badge/Badge'
 import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
+import { transactionTheme } from 'theme/mainTheme'
 
-import types from './types'
+import { notificationTypes } from './types'
 
 const StyledWrapper = styled.div`
   border-bottom: 1px solid hsl(249, 30%, 95%);
@@ -48,41 +50,26 @@ const StyledTime = styled(StyledText)`
   margin-left: auto;
 `
 
-const StyledBadge = styled.span`
-  background-color: ${({ color }) => color.bg};
-  border-radius: 0.6rem;
-  color: ${({ color }) => color.text};
-  display: inline-block;
-  font-size: ${({ theme }) => theme.fontSize.xxxs};
-  font-weight: ${({ theme }) => theme.fontWeight.black};
-  height: 1.9rem;
-  line-height: 2rem;
-  margin-top: 0.7rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  text-transform: uppercase;
-`
-
-const Notification = ({ data }) => {
-  const { message, price, created, type } = data
-  const { color, message: typeMessage, name } = types[type]
+const Notification = ({ details }) => {
+  const { message, amount, created, type } = details
+  const { message: typeMessage } = notificationTypes[type]
 
   return (
     <StyledWrapper>
-      <StyledMessage color={color.dot}>{message || typeMessage}</StyledMessage>
+      <StyledMessage color={transactionTheme[type].colors.dot}>{message || typeMessage}</StyledMessage>
       <StyledTextTimeWrapper>
         <StyledText>
-          {name === 'outcome' && '-'}$ {price}
+          {type === 'outcome' && '-'}$ {amount}
         </StyledText>
         <StyledTime>{created}</StyledTime>
       </StyledTextTimeWrapper>
-      <StyledBadge color={color}>{type}</StyledBadge>
+      <Badge type={type} notification>{type}</Badge>
     </StyledWrapper>
   )
 }
 
 Notification.propTypes = {
-  data: PropTypes.object.isRequired
+  details: PropTypes.object.isRequired
 }
 
 export default Notification
