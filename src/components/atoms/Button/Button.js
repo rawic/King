@@ -1,10 +1,10 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
 import styled from 'styled-components'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const ButtonWrapper = styled.button`
   background: ${({ color, theme }) => color || theme.highlight};
-  border-radius: .6rem;
+  border-radius: 0.6rem;
   border: 0;
   color: #ffffff;
   font-family: Nunito;

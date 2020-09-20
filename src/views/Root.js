@@ -1,13 +1,14 @@
-import React from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import styled from 'styled-components'
-import MainTemplate from 'templates/MainTemplate'
 import Sidebar from 'components/organisms/Sidebar/Sidebar'
 import SummaryBar from 'components/organisms/SummaryBar/SummaryBar'
-import Dashboard from './Dashboard'
+import React from 'react'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import styled from 'styled-components'
+import MainTemplate from 'templates/MainTemplate'
+
 import Analytics from './Analytics'
-import Transactions from './Transactions'
+import Dashboard from './Dashboard'
 import Settings from './Settings'
+import Transactions from './Transactions'
 
 const AppContent = styled.section`
   background-color: white;

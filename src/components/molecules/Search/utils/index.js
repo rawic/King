@@ -1,5 +1,5 @@
-import { store } from 'redux/store'
 import { updateSearchFilter, updateSearchValue } from 'redux/actions'
+import { store } from 'redux/store'
 
 export const handleValueChange = (e) => store.dispatch(updateSearchValue(e.target.value))
 

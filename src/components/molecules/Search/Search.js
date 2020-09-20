@@ -1,10 +1,11 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Input from 'components/atoms/Input/Input'
 import Dropdown from 'components/molecules/Dropdown/Dropdown'
+import PropTypes from 'prop-types'
+import React from 'react'
+import styled from 'styled-components'
+
 import { handleFilterChange, handleValueChange } from './utils'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const StyledWrapper = styled.div`
   flex: 1 0 auto;
@@ -52,7 +53,7 @@ const StyledFilterButton = styled.div`
 
 export const FilterButton = ({ children, handleDropdownClick, isOpened }) => {
   return (
-    <StyledFiltersButton onClick={handleDropdownClick}>
+    <StyledFiltersButton onClick={handleDropdownClick} data-testid="dropdown-trigger">
       {children} &nbsp;
       {isOpened ? <FontAwesomeIcon icon="sort-up" /> : <FontAwesomeIcon icon="sort-down" />}
     </StyledFiltersButton>

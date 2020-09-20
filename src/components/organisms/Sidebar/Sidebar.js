@@ -1,11 +1,13 @@
-import React from 'react'
-import styled, { css } from 'styled-components'
-import { NavLink as RouterNavLink, Link } from 'react-router-dom'
 import LinkIcon from 'components/atoms/LinkIcon/LinkIcon'
 import Logo from 'components/atoms/Logo/Logo'
 import NavLink from 'components/atoms/NavLink/NavLink'
 import NavTitle from 'components/atoms/NavTitle/NavTitle'
 import Notifications from 'components/molecules/NotificationsList/NotificationsList'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { connect } from 'react-redux'
+import { Link, NavLink as RouterNavLink } from 'react-router-dom'
+import styled, { css } from 'styled-components'
 
 const StyledWrapper = styled.div`
   background-color: hsl(0, 0%, 100%);
@@ -37,11 +39,11 @@ const StyledNav = styled.nav`
 
 const StyledNavLink = styled(NavLink)`
   margin-top: 2rem;
-  padding: .5rem 3.5rem;
+  padding: 0.5rem 3.5rem;
   width: 100%;
 `
 
-const Sidebar = () => (
+const Sidebar = ({ notifications }) => (
   <StyledWrapper>
     <StyledInnerWrapper>
       <Link to="/">
@@ -82,8 +84,20 @@ const Sidebar = () => (
       <NavTitle>Notifications</NavTitle>
     </StyledInnerWrapper>
 
-    <Notifications />
+    <Notifications notifications={notifications} />
   </StyledWrapper>
 )
 
-export default Sidebar
+Sidebar.propTypes = {
+  notifications: PropTypes.array.isRequired
+}
+
+const mapStateToProps = (state) => {
+  return {
+    notifications: state.notifications
+  }
+}
+
+const SidebarContainer = connect(mapStateToProps)(Sidebar)
+
+export default SidebarContainer

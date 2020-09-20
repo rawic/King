@@ -1,27 +1,32 @@
-import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import React, { PureComponent } from 'react'
 import ReactPerformance from 'react-performance'
-import { closeDropdown } from './utils/'
+import styled from 'styled-components'
+
 import Option from './Option'
+import { closeDropdown } from './utils/'
 
 const StyledDropdown = styled.div`
   background-color: white;
   border-radius: 0.6rem;
   box-shadow: 0 0.2rem 0.4rem hsla(0, 0%, 0%, 0.08);
+  margin-top: 6px;
   padding-bottom: 0.4rem;
   padding-top: 0.4rem;
   position: absolute;
   right: 0;
   top: 100%;
-  margin-top: 6px;
+  z-index: ${({ theme }) => theme.zindex.dropdown};
 `
 
 const StyledList = styled.ul`
   font-size: ${({ theme }) => theme.fontSize.xs};
   list-style-type: none;
   min-width: 150px;
-  text-align: right;
+`
+
+const StyledDropdownWrapper = styled.div`
+  position: relative;
 `
 
 class Dropdown extends PureComponent {
@@ -64,6 +69,28 @@ class Dropdown extends PureComponent {
     }
   }
 
+  renderOption = (option) => {
+    let value = option.value
+    const icon = option.icon
+    if (typeof value === 'undefined') {
+      value = option.label || option
+    }
+    const label = option.label || option.value || option
+    const isSelected = value === this.state.selected
+
+    return (
+      <Option
+        key={value}
+        changeSelected={this.changeSelected}
+        testId={`dropdown-option-${value}`}
+        isSelected={isSelected}
+        icon={icon}
+      >
+        {label}
+      </Option>
+    )
+  }
+
   toggleDropdown = () => {
     ReactPerformance.startRecording()
     this.setState((state) => ({
@@ -81,23 +108,17 @@ class Dropdown extends PureComponent {
     const { content } = this.props
 
     return (
-      <div ref={this.setWrapperRef}>
+      <StyledDropdownWrapper ref={this.setWrapperRef}>
         <TriggerElement handleDropdownClick={this.toggleDropdown} isOpened={opened}>
           {selected || content}
         </TriggerElement>
 
         {opened && (
-          <StyledDropdown>
-            <StyledList>
-              {options.map((option, i) => (
-                <Option key={i} changeSelected={this.changeSelected}>
-                  {option}
-                </Option>
-              ))}
-            </StyledList>
+          <StyledDropdown data-testid="dropdown">
+            <StyledList>{options.map((option) => this.renderOption(option))}</StyledList>
           </StyledDropdown>
         )}
-      </div>
+      </StyledDropdownWrapper>
     )
   }
 }

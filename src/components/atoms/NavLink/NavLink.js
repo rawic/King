@@ -10,7 +10,8 @@ const StyledNavLink = styled.button`
   font-family: ${({ theme }) => theme.fontFamily.primary};
   font-size: initial;
   font-weight: ${({ theme }) => theme.fontWeight.bold};
-  &.active, &:hover {
+  &.active,
+  &:hover {
     color: ${({ theme }) => theme.highlight};
   }
   &:focus {

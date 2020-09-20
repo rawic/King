@@ -1,7 +1,7 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import styled from 'styled-components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import PropTypes from 'prop-types'
+import React from 'react'
+import styled from 'styled-components'
 
 const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
   margin-right: 2rem;

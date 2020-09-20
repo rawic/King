@@ -1,32 +1,11 @@
-import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import React, { Component } from 'react'
+import registerFaIcons from 'registerFaIcons'
 import { ThemeProvider } from 'styled-components'
 import GlobalStyle from 'theme/GlobalStyle'
 import { theme } from 'theme/mainTheme'
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { fab } from '@fortawesome/free-brands-svg-icons'
-import {
-  faAngleRight,
-  faChartBar,
-  faCog,
-  faExchangeAlt,
-  faGripHorizontal,
-  faSearch,
-  faSortDown,
-  faSortUp
-} from '@fortawesome/free-solid-svg-icons'
 
-library.add(
-  fab,
-  faAngleRight,
-  faChartBar,
-  faCog,
-  faExchangeAlt,
-  faGripHorizontal,
-  faSearch,
-  faSortDown,
-  faSortUp
-)
+registerFaIcons()
 
 class MainTemplate extends Component {
   render() {
