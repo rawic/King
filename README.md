@@ -3,10 +3,10 @@
     <img src="readme/logo.svg" height="100" alt="King app logo">
   </a>
 
-  <h3 align="center">King</h3>
+  <h3 align="center">King - Personal Finance App</h3>
 
   <p align="center">
-    Personal Finance App.
+    Project under development process.
     <br />
     Live demo comming soon.
   </p>
