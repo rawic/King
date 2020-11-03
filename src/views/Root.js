@@ -12,8 +12,8 @@ import Transactions from './Transactions'
 
 const AppContent = styled.section`
   background-color: white;
-  border-top-left-radius: 1.2rem;
   border-bottom-left-radius: 1.2rem;
+  border-top-left-radius: 1.2rem;
   margin-bottom: 3rem;
   margin-left: 3rem;
   margin-top: 3rem;

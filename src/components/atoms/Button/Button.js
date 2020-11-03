@@ -32,19 +32,19 @@ const IconWrapper = styled.span`
   width: 2.7rem;
 `
 
-const Button = ({ children, icon, color }) => {
-  const Button = icon ? (
-    <ButtonWrapper color={color} icon={icon}>
-      {children}{' '}
-      <IconWrapper>
-        <FontAwesomeIcon icon={icon} />
-      </IconWrapper>
-    </ButtonWrapper>
-  ) : (
-    <ButtonWrapper color={color}>{children}</ButtonWrapper>
-  )
-
-  return Button
+const Button = ({ children, className, icon, color }) => {
+  if (icon) {
+    return (
+      <ButtonWrapper className={className} color={color} icon={icon}>
+        {children}{' '}
+        <IconWrapper>
+          <FontAwesomeIcon icon={icon} />
+        </IconWrapper>
+      </ButtonWrapper>
+    )
+  } else {
+    ;<ButtonWrapper color={color}>{children}</ButtonWrapper>
+  }
 }
 
 export default Button

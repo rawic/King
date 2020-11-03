@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types'
 import React, { PureComponent } from 'react'
-import ReactPerformance from 'react-performance'
 import styled from 'styled-components'
 
 import Option from './Option'
@@ -92,7 +91,6 @@ class Dropdown extends PureComponent {
   }
 
   toggleDropdown = () => {
-    ReactPerformance.startRecording()
     this.setState((state) => ({
       opened: !state.opened
     }))
@@ -123,8 +121,4 @@ class Dropdown extends PureComponent {
   }
 }
 
-export default ReactPerformance.measure({
-  getId: 'Dropdown',
-  Component: Dropdown,
-  isCollapsed: false
-})
+export default Dropdown

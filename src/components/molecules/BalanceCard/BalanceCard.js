@@ -54,7 +54,7 @@ const StyledBalanceAmount = styled.span`
   font-weight: ${({ theme }) => theme.fontWeight.extraBold};
 `
 
-const BalanceCard = ({ balance, type }) => {
+const BalanceCard = ({ balance, type, children }) => {
   const { arrowIcon: arrow, colors, icon, text } = cardTypes[type]
 
   return (
@@ -69,7 +69,7 @@ const BalanceCard = ({ balance, type }) => {
         </div>
       </StyledWrapper>
       <StyledWrapper spaceBetween>
-        <Paragraph>Balance up by</Paragraph>
+        <Paragraph>{children}</Paragraph>
         <StyledWrapper>
           <StyledIconCircle colors={colors} small>
             <FontAwesomeIcon icon={arrow} />
@@ -85,7 +85,12 @@ const BalanceCard = ({ balance, type }) => {
 
 BalanceCard.propTypes = {
   balance: PropTypes.object.isRequired,
+  children: PropTypes.string,
   type: PropTypes.string.isRequired
+}
+
+BalanceCard.defaultProps = {
+  children: ''
 }
 
 export default BalanceCard

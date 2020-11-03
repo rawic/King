@@ -13,7 +13,7 @@ module.exports = {
     ecmaFeatures: {
       jsx: true
     },
-    ecmaVersion: 2018,
+    ecmaVersion: 2020,
     sourceType: 'module'
   },
   parser: 'babel-eslint',
@@ -26,6 +26,7 @@ module.exports = {
     'import/order': 'off',
     'import/first': 'error',
     'import/newline-after-import': 'error',
-    'import/no-duplicates': 'error'
+    'import/no-duplicates': 'error',
+    'default-param-last': 'off'
   }
 }

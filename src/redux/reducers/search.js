@@ -1,7 +1,7 @@
 import { UPDATE_SEARCH_FILTER, UPDATE_SEARCH_VALUE } from 'redux/actions'
 
 const initialState = {
-  filterBy: 'all',
+  filterBy: '',
   value: ''
 }
 

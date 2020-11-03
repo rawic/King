@@ -1,8 +1,7 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import styled, { css } from 'styled-components'
-import ReactPerformance from 'react-performance'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import PropTypes from 'prop-types'
+import React from 'react'
+import styled, { css } from 'styled-components'
 
 const StyledGroup = styled.div`
   & + & {
@@ -54,15 +53,19 @@ const StyledInput = styled.input`
     `}
 `
 
+let inputTemplate
+
 const Input = ({ className, label, icon, placeholder, onChange }) => {
-  const inputTemplate = icon ? (
-    <StyledWrapper>
-      <StyledInput placeholder={placeholder} icon={icon} onChange={onChange} />
-      <StyledFontAwesomeIcon icon={icon} />
-    </StyledWrapper>
-  ) : (
-    <StyledInput placeholder={placeholder} />
-  )
+  if (icon) {
+    inputTemplate = (
+      <StyledWrapper>
+        <StyledInput placeholder={placeholder} icon={icon} onChange={onChange} />
+        <StyledFontAwesomeIcon icon={icon} />
+      </StyledWrapper>
+    )
+  } else {
+    inputTemplate = <StyledInput placeholder={placeholder} />
+  }
 
   return (
     <StyledGroup className={className}>
@@ -81,8 +84,4 @@ Input.propTypes = {
   search: PropTypes.bool
 }
 
-export default ReactPerformance.measure({
-  getId: 'Input',
-  Component: Input,
-  isCollapsed: false
-})
+export default Input

@@ -2,11 +2,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Badge from 'components/atoms/Badge/Badge'
 import Paragraph from 'components/atoms/Paragraph/Paragraph'
 import Dropdown from 'components/molecules/Dropdown/Dropdown'
+import PropTypes from 'prop-types'
 import React from 'react'
+import { removeTransaction } from 'redux/actions'
+import { store } from 'redux/store'
 import styled from 'styled-components'
 import { filterAmount } from 'utilities'
 
-// import { handleFilterChange } from './utils'
+const handleTransactionAction = (id) => (action) => {
+  const actionType = action.toLowerCase()
+  if (actionType === 'remove') {
+    return store.dispatch(removeTransaction(id))
+  }
+}
 
 const StyledWrapper = styled.article`
   align-items: center;
@@ -40,6 +48,7 @@ const StyledHeader = styled.header`
 
 const StyledHeading = styled.h3`
   font-weight: ${({ theme }) => theme.fontWeight.bold};
+  font-size: ${({ theme }) => theme.fontSize.m};
 `
 
 const StyledTime = styled.span`
@@ -78,6 +87,7 @@ const StyledArrowButton = styled.button`
 
 const StyledTotalAmount = styled.span`
   font-weight: ${({ theme }) => theme.fontWeight.extraBold};
+  width: 85px;
 `
 
 export const searchFilterOptions = [
@@ -91,16 +101,12 @@ const ActionButton = ({ handleDropdownClick }) => (
   </StyledArrowButton>
 )
 
-const Created = ({ time }) => (
-  <StyledTime>
-    <StyledClock icon={['far', 'clock']} />
-    {time}
-  </StyledTime>
-)
-
 const Transaction = ({ transaction, total }) => {
-  const { amount, category, time, title, type } = transaction
+  const { amount, category, id, time, title, type } = transaction
   const { color, icon, name } = category
+
+  const transactionTime = time.split(' ')[1]
+  const totalAmount = total + amount
 
   return (
     <StyledWrapper>
@@ -119,18 +125,30 @@ const Transaction = ({ transaction, total }) => {
         {filterAmount(amount, true)}
       </StyledBadge>
 
-      <Created time={time} />
+      <StyledTime>
+        <StyledClock icon={['far', 'clock']} />
+        {transactionTime}
+      </StyledTime>
 
-      <StyledTotalAmount>{filterAmount(total, false, ' ')}</StyledTotalAmount>
+      <StyledTotalAmount>{filterAmount(totalAmount, false, ' ')}</StyledTotalAmount>
 
       <Dropdown
         content=""
         trigger={ActionButton}
         options={searchFilterOptions}
-        onChange={() => ''}
+        onChange={handleTransactionAction(id)}
       />
     </StyledWrapper>
   )
+}
+
+ActionButton.propTypes = {
+  handleDropdownClick: PropTypes.func.isRequired
+}
+
+Transaction.propTypes = {
+  transaction: PropTypes.object.isRequired,
+  total: PropTypes.number.isRequired
 }
 
 export default Transaction

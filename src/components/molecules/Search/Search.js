@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import styled from 'styled-components'
 
-import { handleFilterChange, handleValueChange } from './utils'
+import { handleFilterChange, handleValueChange, searchFilterOptions } from './utils'
 
 const StyledWrapper = styled.div`
   flex: 1 0 auto;
@@ -29,6 +29,7 @@ const StyledInput = styled(Input)`
 `
 
 const StyledFiltersButton = styled.button`
+  align-items: center;
   background-color: ${({ theme }) => theme.highlight};
   border-radius: 0.6rem;
   border: 0;
@@ -55,13 +56,10 @@ export const FilterButton = ({ children, handleDropdownClick, isOpened }) => {
   return (
     <StyledFiltersButton onClick={handleDropdownClick} data-testid="dropdown-trigger">
       {children} &nbsp;
-      {isOpened ? <FontAwesomeIcon icon="sort-up" /> : <FontAwesomeIcon icon="sort-down" />}
+      {isOpened ? <FontAwesomeIcon icon="caret-up" /> : <FontAwesomeIcon icon="caret-down" />}
     </StyledFiltersButton>
   )
 }
-
-// TODO:
-export const searchFilterOptions = ['Incomes', 'Outcomes', 'All']
 
 const Search = ({ ...props }) => {
   return (

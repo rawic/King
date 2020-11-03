@@ -24,7 +24,9 @@ const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
 const hasIcon = (icon) => {
   if (icon === undefined) return
 
-  return <StyledFontAwesomeIcon icon={icon.name} color={icon.color} fixedWidth></StyledFontAwesomeIcon>
+  return (
+    <StyledFontAwesomeIcon icon={icon.name} color={icon.color} fixedWidth></StyledFontAwesomeIcon>
+  )
 }
 
 const Option = ({ children, changeSelected, icon, isSelected, testId }) => (
@@ -41,7 +43,9 @@ const Option = ({ children, changeSelected, icon, isSelected, testId }) => (
 Option.propTypes = {
   changeSelected: PropTypes.func.isRequired,
   children: PropTypes.string.isRequired,
-  testId: PropTypes.string
+  testId: PropTypes.string,
+  icon: PropTypes.object,
+  isSelected: PropTypes.bool
 }
 
 export default Option

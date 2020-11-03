@@ -19,7 +19,13 @@ const initialState = {
 export const balance = (state = initialState, action) => {
   switch (action.type) {
     case UPDATE_BALANCE:
-      return { ...state, incomes: action.payload }
+      return {
+        ...state,
+        [action.payload.category]: {
+          ...state[action.payload.category],
+          amount: (state[action.payload.category].amount += action.payload.amount)
+        }
+      }
     default:
       return state
   }

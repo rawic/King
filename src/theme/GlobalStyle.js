@@ -100,6 +100,9 @@ const GlobalStyle = createGlobalStyle`
     border-radius: 12px;
     box-shadow: 0px 0px 73px rgba(0, 0, 0, 0.02);
     display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 1600px;
     overflow: hidden;
   }
 `
