@@ -22,6 +22,7 @@ import {
   faSearch,
   faSortDown,
   faSortUp,
+  faTimes,
   faTrash,
   faUtensils,
   faWallet
@@ -35,8 +36,8 @@ const registerIcons = () =>
     faArrowDown,
     faArrowUp,
     faBriefcase,
-    faCaretUp,
     faCaretDown,
+    faCaretUp,
     faChartArea,
     faChartBar,
     faChartLine,
@@ -51,6 +52,7 @@ const registerIcons = () =>
     faSearch,
     faSortDown,
     faSortUp,
+    faTimes,
     faTrash,
     faUtensils,
     faWallet

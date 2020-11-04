@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Heading from 'components/atoms/Heading/Heading'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -27,19 +28,39 @@ const StyledModal = styled.section`
   min-height: 200px;
 `
 
-const Modal = ({ title, children }) => (
-  <>
-    <StyledOverlay />
-    <StyledModal>
-      <Heading weight="extraBold">{title}</Heading>
-      {children}
-    </StyledModal>
-  </>
-)
+const StyledCloseBtn = styled.button`
+  align-items: center;
+  background: transparent;
+  border: 0;
+  color: #b3b3b3;
+  display: flex;
+  font-size: 2.2rem;
+  height: 2.2rem;
+  padding: 0;
+  position: absolute;
+  right: 2.8rem;
+  top: 2.8rem;
+`
+
+const Modal = ({ title, children, isModalOpen }) =>
+  isModalOpen && (
+    <>
+      <StyledOverlay />
+      <StyledModal>
+        <StyledCloseBtn>
+          <FontAwesomeIcon icon="times" />
+        </StyledCloseBtn>
+
+        <Heading weight="extraBold">{title}</Heading>
+        {children}
+      </StyledModal>
+    </>
+  )
 
 Modal.propTypes = {
   title: PropTypes.string,
-  children: PropTypes.elementType
+  children: PropTypes.elementType,
+  isModalOpen: PropTypes.bool.isRequired
 }
 
 export default Modal

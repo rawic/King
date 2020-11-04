@@ -58,6 +58,10 @@ const Header = React.memo(({ title }) => {
   )
 })
 class Dashboard extends React.PureComponent {
+  state = {
+    isModalOpen: false
+  }
+
   static propTypes = {
     incomes: PropTypes.object.isRequired,
     outcomes: PropTypes.object.isRequired,
@@ -88,8 +92,8 @@ class Dashboard extends React.PureComponent {
 
         <Transactions />
 
-        <Modal title="Add new transaction">
-          <AddTransaction></AddTransaction>
+        <Modal title="Add new transaction" isModalOpen={this.state.isModalOpen}>
+          <AddTransaction />
         </Modal>
       </>
     )
