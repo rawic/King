@@ -1,5 +1,6 @@
-import Button from 'components/atoms/Button/Button'
+import AddTransaction from 'components/molecules/Transaction/AddTransaction/AddTransaction'
 import TransactionsList from 'components/molecules/TransactionsList/TransactionsList'
+// import { ModalContext } from 'context/modalContext'
 import React from 'react'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
@@ -30,10 +31,6 @@ const StyledSectionTitle = styled.span`
   }
 `
 
-const StyledSectionButton = styled(Button)`
-  margin-bottom: 2.7rem;
-`
-
 const Transactions = () => {
   const transactions = useSelector((state) => {
     const { search, transactions } = state
@@ -61,7 +58,8 @@ const Transactions = () => {
     <>
       <StyledSectionHeader>
         <StyledSectionTitle>Today</StyledSectionTitle>
-        <StyledSectionButton icon="angle-right">New transaction</StyledSectionButton>
+
+        <AddTransaction />
       </StyledSectionHeader>
 
       <TransactionsList transactions={lastTransactions} />

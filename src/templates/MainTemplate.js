@@ -1,3 +1,4 @@
+import { ModalProvider } from 'context/modalContext'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 import registerFaIcons from 'registerFaIcons'
@@ -15,7 +16,9 @@ class MainTemplate extends Component {
       <React.Fragment>
         <GlobalStyle />
         <ThemeProvider theme={theme}>
-          <div className="app-container">{children}</div>
+          <ModalProvider>
+            <div className="app-container">{children}</div>
+          </ModalProvider>
         </ThemeProvider>
       </React.Fragment>
     )

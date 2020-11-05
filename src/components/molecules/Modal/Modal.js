@@ -1,7 +1,8 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Heading from 'components/atoms/Heading/Heading'
-import PropTypes from 'prop-types'
-import React from 'react'
+// import Heading from 'components/atoms/Heading/Heading'
+import { ModalContext } from 'context/modalContext'
+// import PropTypes from 'prop-types'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 
 const StyledOverlay = styled.div`
@@ -42,25 +43,31 @@ const StyledCloseBtn = styled.button`
   top: 2.8rem;
 `
 
-const Modal = ({ title, children, isModalOpen }) =>
-  isModalOpen && (
-    <>
-      <StyledOverlay />
-      <StyledModal>
-        <StyledCloseBtn>
-          <FontAwesomeIcon icon="times" />
-        </StyledCloseBtn>
+const Modal = () => {
+  const { isModalOpen, handleModal, modalContent } = useContext(ModalContext)
 
-        <Heading weight="extraBold">{title}</Heading>
-        {children}
-      </StyledModal>
-    </>
-  )
+  // const Component = modalContent
 
-Modal.propTypes = {
-  title: PropTypes.string,
-  children: PropTypes.elementType,
-  isModalOpen: PropTypes.bool.isRequired
+  // console.log(modalContent)
+
+  if (isModalOpen) {
+    return (
+      <>
+        <StyledOverlay />
+        <StyledModal>
+          <StyledCloseBtn onClick={() => handleModal()}>
+            <FontAwesomeIcon icon="times" />
+          </StyledCloseBtn>
+          {modalContent}
+
+          {/* <Heading weight="extraBold">{title}</Heading> */}
+          {/* {modalContent && <Component />} */}
+        </StyledModal>
+      </>
+    )
+  } else {
+    return null
+  }
 }
 
 export default Modal

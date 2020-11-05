@@ -1,9 +1,7 @@
 import Heading from 'components/atoms/Heading/Heading'
 import Paragraph from 'components/atoms/Paragraph/Paragraph'
 import BalanceCard from 'components/molecules/BalanceCard/BalanceCard'
-import Modal from 'components/molecules/Modal/Modal'
 import Search from 'components/molecules/Search/Search'
-import AddTransaction from 'components/molecules/Transaction/AddTransaction/AddTransaction'
 import Transactions from 'components/organisms/Transactions/Transactions'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -91,10 +89,6 @@ class Dashboard extends React.PureComponent {
         </StyledBalanceCards>
 
         <Transactions />
-
-        <Modal title="Add new transaction" isModalOpen={this.state.isModalOpen}>
-          <AddTransaction />
-        </Modal>
       </>
     )
   }
