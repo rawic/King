@@ -1,7 +1,7 @@
 import Sidebar from 'components/organisms/Sidebar/Sidebar'
 import SummaryBar from 'components/organisms/SummaryBar/SummaryBar'
 import React from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { HashRouter, Route, Switch } from 'react-router-dom'
 import styled from 'styled-components'
 import MainTemplate from 'templates/MainTemplate'
 
@@ -22,7 +22,7 @@ const AppContent = styled.section`
 `
 
 const Root = () => (
-  <Router>
+  <HashRouter basename="/">
     <MainTemplate>
       <Sidebar />
       <AppContent>
@@ -41,7 +41,7 @@ const Root = () => (
       </AppContent>
       <SummaryBar />
     </MainTemplate>
-  </Router>
+  </HashRouter>
 )
 
 export default Root

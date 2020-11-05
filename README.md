@@ -8,7 +8,12 @@
   <p align="center">
     Project under development process.
     <br />
-    Live demo comming soon.
+    <a href="https://rawic.github.io/king/" target="_blank" rel="noopener noreferrer"><strong>Live demo »</strong></a>
+    <br />
+    <br />
+    <a href="https://rawic.github.io/king/issues">Report Bug</a>
+    ·
+    <a href="https://rawic.github.io/king/issues">Request Feature</a>
   </p>
 </p>
 
@@ -18,17 +23,10 @@
   <img src="readme/app-screenshot.jpg" alt="King app - Home page" style="max-width: 100%;">
 </a>
 
-My first advanced project in React. It's still under development process. 
+My first advanced project in React. It's still under development process.
 I regularly raise the difficulty level (e.g. First I implemented the Context API and then Redux)
 
 More information about the project will be available soon.
-
-### Installation
-
-```sh
-yarn
-yarn start
-```
 
 ### Built With
 
@@ -40,6 +38,58 @@ yarn start
 - [Jest](https://jestjs.io/)
 - [React Testing Library](https://testing-library.com/docs/react-testing-library/intro)
 - [Figma](https://www.figma.com/)
+
+## Getting started
+
+### Prerequisites
+
+- yarn
+
+```sh
+npm install -g yarn
+```
+
+### Installation
+
+Using Yarn:
+
+1. Clone the repository
+
+```sh
+https://github.com/rawic/king.git
+```
+
+2. Go to the project directory
+
+```sh
+cd king
+```
+
+3. Install packages
+
+```
+yarn
+```
+
+## Usage
+
+Run the app
+
+```sh
+yarn start
+```
+
+Test the app
+
+```sh
+yarn test
+```
+
+Build the app
+
+```sh
+yarn build
+```
 
 ## License
 
