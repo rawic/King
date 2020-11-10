@@ -1,35 +1,9 @@
 import AddTransaction from 'components/molecules/Transaction/AddTransaction/AddTransaction'
 import TransactionsList from 'components/molecules/TransactionsList/TransactionsList'
-// import { ModalContext } from 'context/modalContext'
 import React from 'react'
 import { useSelector } from 'react-redux'
-import styled from 'styled-components'
 
-const StyledSectionHeader = styled.header`
-  align-items: center;
-  border-bottom: 1px solid #f2faff;
-  display: flex;
-  justify-content: space-between;
-  margin-top: 3.5rem;
-  position: relative;
-`
-
-const StyledSectionTitle = styled.span`
-  color: ${({ theme }) => theme.secondary};
-  padding-bottom: 2.7rem;
-  position: relative;
-  text-transform: uppercase;
-
-  &::after {
-    content: '';
-    background-color: ${({ theme }) => theme.highlight};
-    bottom: -8px;
-    height: 0.8rem;
-    left: 0;
-    position: absolute;
-    width: 100%;
-  }
-`
+import { StyledSectionHeader, StyledSectionTitle } from './Transactions.styles'
 
 const Transactions = () => {
   const transactions = useSelector((state) => {
