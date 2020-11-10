@@ -2,12 +2,12 @@ import 'jest-styled-components'
 
 import { fireEvent, render } from '@testing-library/react'
 import Dropdown from 'components/molecules/Dropdown/Dropdown'
-import { FilterButton, searchFilterOptions } from 'components/molecules/Search/Search'
+import FilterButton from 'components/molecules/Search/FilterButton/FilterButton'
 import React from 'react'
 import { ThemeProvider } from 'styled-components'
 import { theme } from 'theme/mainTheme'
 
-import { handleFilterChange } from './utils'
+import { handleFilterChange, searchFilterOptions } from './Search.utils'
 
 it('should toggle search filter dropdown on click', () => {
   const { getByTestId } = render(
@@ -39,6 +39,6 @@ it('should change filter to Outcomes on click', () => {
   const trigger = getByTestId('dropdown-trigger')
 
   fireEvent.click(trigger)
-  fireEvent.click(getByTestId('dropdown-option-1'))
+  fireEvent.click(getByTestId('dropdown-option-outcome'))
   expect(trigger).toHaveTextContent('Outcomes')
 })
