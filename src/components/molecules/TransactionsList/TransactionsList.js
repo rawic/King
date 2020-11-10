@@ -1,11 +1,8 @@
 import Transaction from 'components/molecules/Transaction/Transaction'
 import PropTypes from 'prop-types'
 import React from 'react'
-import styled from 'styled-components'
 
-const StyledTransactionsList = styled.section`
-  padding-bottom: 2rem;
-`
+import { StyledTransactionsList } from './TransactionsList.styles'
 
 const TransactionsList = ({ transactions }) => {
   return (
