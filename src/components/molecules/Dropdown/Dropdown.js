@@ -47,9 +47,9 @@ function Dropdown({ content, onChange, options: optionsProps, trigger }) {
     setOpened((prevState) => !prevState)
   }
 
-  useOutsideClick(wrapperRef, () => setOpened(false))
-
   const TriggerElement = trigger
+
+  useOutsideClick(wrapperRef, () => setOpened(false))
 
   return (
     <StyledDropdownWrapper ref={wrapperRef}>
