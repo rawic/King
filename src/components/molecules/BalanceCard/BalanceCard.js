@@ -4,7 +4,13 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { filterAmount, filterPercentages } from 'utilities'
 
-import { StyledAmount, StyledBalanceAmount, StyledBalanceCard, StyledIconCircle, StyledWrapper } from './BalanceCard.styles'
+import {
+  StyledAmount,
+  StyledBalanceAmount,
+  StyledBalanceCard,
+  StyledIconCircle,
+  StyledWrapper
+} from './BalanceCard.styles'
 import cardTypes from './types'
 
 const BalanceCard = ({ balance, type, children }) => {
