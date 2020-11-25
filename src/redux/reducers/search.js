@@ -1,4 +1,4 @@
-import { UPDATE_SEARCH_FILTER, UPDATE_SEARCH_VALUE } from 'redux/actions'
+import { UPDATE_SEARCH_FILTER, UPDATE_SEARCH_VALUE } from 'redux/actions/searchActions'
 
 const initialState = {
   filterBy: '',

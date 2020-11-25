@@ -1,5 +1,7 @@
+import { ModalProvider } from 'context/modalContext'
+import { AnimateSharedLayout, motion } from 'framer-motion'
 import PropTypes from 'prop-types'
-import React, { Component } from 'react'
+import React from 'react'
 import registerFaIcons from 'registerFaIcons'
 import { ThemeProvider } from 'styled-components'
 import GlobalStyle from 'theme/GlobalStyle'
@@ -7,20 +9,18 @@ import { theme } from 'theme/mainTheme'
 
 registerFaIcons()
 
-class MainTemplate extends Component {
-  render() {
-    const { children } = this.props
-
-    return (
-      <React.Fragment>
-        <GlobalStyle />
-        <ThemeProvider theme={theme}>
-          <div className="app-container">{children}</div>
-        </ThemeProvider>
-      </React.Fragment>
-    )
-  }
-}
+const MainTemplate = ({ children }) => (
+  <React.Fragment>
+    <GlobalStyle />
+    <ThemeProvider theme={theme}>
+      <ModalProvider>
+        <AnimateSharedLayout>
+          <motion.div layout className="app-container">{children}</motion.div>
+        </AnimateSharedLayout>
+      </ModalProvider>
+    </ThemeProvider>
+  </React.Fragment>
+)
 
 MainTemplate.propTypes = {
   children: PropTypes.array.isRequired

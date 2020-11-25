@@ -1,4 +1,4 @@
-import { ADD_NOTIFICATION } from 'redux/actions'
+import { ADD_NOTIFICATION } from 'redux/actions/notificationActions'
 
 const initialState = [
   {

@@ -1,77 +1,58 @@
-import Button from 'components/atoms/Button/Button'
+import fetchCategories from 'api/fetchCategories'
+import fetchTransactions from 'api/fetchTransactions'
+import AddTransaction from 'components/molecules/Transaction/AddTransaction/AddTransaction'
 import TransactionsList from 'components/molecules/TransactionsList/TransactionsList'
-import React from 'react'
-import { useSelector } from 'react-redux'
-import styled from 'styled-components'
+import { motion } from 'framer-motion'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { getTransactionsFromDay } from 'utilities'
 
-const StyledSectionHeader = styled.header`
-  align-items: center;
-  border-bottom: 1px solid #f2faff;
-  display: flex;
-  justify-content: space-between;
-  margin-top: 3.5rem;
-  position: relative;
-`
-
-const StyledSectionTitle = styled.span`
-  color: ${({ theme }) => theme.secondary};
-  padding-bottom: 2.7rem;
-  position: relative;
-  text-transform: uppercase;
-
-  &::after {
-    content: '';
-    background-color: ${({ theme }) => theme.highlight};
-    bottom: -8px;
-    height: 0.8rem;
-    left: 0;
-    position: absolute;
-    width: 100%;
-  }
-`
-
-const StyledSectionButton = styled(Button)`
-  margin-bottom: 2.7rem;
-`
+import { StyledSectionHeader, StyledSectionTitle } from './Transactions.styles'
 
 const Transactions = () => {
-  const transactions = useSelector((state) => {
-    const { search, transactions } = state
+  const dispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(fetchTransactions())
+    dispatch(fetchCategories())
+  }, [])
+
+  const [transactions, categories, isLoading] = useSelector((state) => {
+    const { transactions: { transactions }, categories: { categories }, search } = state
     const { filterBy, value } = search
 
+    const isLoading = state.categories.loading || state.transactions.loading
+
+    if (transactions.length < 0) return []
+
     return [
-      ...transactions
+      transactions
         .filter(
           (t) => t.title.toLowerCase().includes(value.toLowerCase()) && t.type.includes(filterBy)
         )
-        .sort((a, b) => new Date(b.time) - new Date(a.time))
+        .sort((a, b) => new Date(b.time) - new Date(a.time)), categories, isLoading
     ]
   })
 
-  const dates = [...new Set(transactions.map((t) => t.time.split(' ')[0]))].slice(0, 2)
+  const lastTransactions = getTransactionsFromDay(transactions, '2020-05-13')
+  const secondLastTransactions = getTransactionsFromDay(transactions, '2020-05-12')
 
-  const getTransactionsFromDay = (day) => {
-    return transactions.filter((t, i) => t.time.split(' ')[0] === dates[day]).slice(0, 5)
-  }
-
-  const lastTransactions = getTransactionsFromDay(0)
-  const secondLastTransactions = getTransactionsFromDay(1)
-
-  return (
-    <>
-      <StyledSectionHeader>
+  return !isLoading && (
+    <motion.div layout>
+      <StyledSectionHeader layout>
         <StyledSectionTitle>Today</StyledSectionTitle>
-        <StyledSectionButton icon="angle-right">New transaction</StyledSectionButton>
+
+        <AddTransaction />
       </StyledSectionHeader>
 
-      <TransactionsList transactions={lastTransactions} />
+      <TransactionsList transactions={lastTransactions} categories={categories} />
 
-      <StyledSectionHeader>
+      <StyledSectionHeader layout>
         <StyledSectionTitle>Yesterday</StyledSectionTitle>
       </StyledSectionHeader>
 
-      <TransactionsList transactions={secondLastTransactions} />
-    </>
+      <TransactionsList transactions={secondLastTransactions} categories={categories} />
+    </motion.div>
   )
 }
 

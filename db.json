@@ -1,0 +1,153 @@
+{
+  "transactions": [
+    {
+      "id": 1,
+      "title": "Pocket money",
+      "type": "income",
+      "category": 1,
+      "amount": 45,
+      "time": "2020-05-13 23:42",
+      "total": 3091.51
+    },
+    {
+      "id": 2,
+      "title": "Job",
+      "type": "income",
+      "category": 2,
+      "amount": 1215,
+      "time": "2020-05-13 23:32",
+      "total": 3001.51
+    },
+    {
+      "id": 3,
+      "title": "Netflix subscription",
+      "type": "outcome",
+      "category": 3,
+      "amount": -15.49,
+      "time": "2020-05-12 15:32",
+      "total": 562
+    },
+    {
+      "id": 4,
+      "title": "Netflix subscription",
+      "type": "outcome",
+      "category": 3,
+      "amount": -15.49,
+      "time": "2020-05-12 15:32",
+      "total": 1786.51
+    },
+    {
+      "id": 5,
+      "title": "Mowing neighbor's grass",
+      "type": "income",
+      "category": 4,
+      "amount": 25,
+      "time": "2020-05-13 12:21",
+      "total": 1802
+    },
+    {
+      "id": 6,
+      "title": "McDonald's",
+      "type": "outcome",
+      "category": 5,
+      "amount": -115,
+      "time": "2020-05-13 07:14",
+      "total": 552.49
+    },
+    {
+      "id": 7,
+      "title": "Pocket money",
+      "type": "income",
+      "category": 1,
+      "amount": 45,
+      "time": "2020-05-13 23:42",
+      "total": 3046.51
+    },
+    {
+      "id": 8,
+      "title": "Job",
+      "type": "income",
+      "category": 2,
+      "amount": 1215,
+      "time": "2020-05-12 23:32",
+      "total": 1777
+    },
+    {
+      "id": 9,
+      "title": "Mowing neighbor's grass",
+      "type": "income",
+      "category": 4,
+      "amount": 25,
+      "time": "2020-05-12 12:21",
+      "total": 577.49
+    },
+    {
+      "id": 10,
+      "title": "McDonald's",
+      "type": "outcome",
+      "category": 5,
+      "amount": -115,
+      "time": "2020-05-12 07:14",
+      "total": 552.49
+    },
+    {
+      "id": 11,
+      "title": "McDonald's",
+      "type": "outcome",
+      "category": 5,
+      "amount": -115,
+      "time": "2020-05-12 07:14",
+      "total": 667.49
+    },
+    {
+      "id": 12,
+      "title": "McDonald's",
+      "type": "outcome",
+      "category": 5,
+      "amount": -115,
+      "time": "2020-05-12 07:14",
+      "total": 667.49
+    },
+    {
+      "id": 13,
+      "title": "McDonald's",
+      "type": "outcome",
+      "category": 5,
+      "amount": -115,
+      "time": "2020-05-11 07:14",
+      "total": 667.49
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "color": "#3160FF",
+      "icon": "wallet",
+      "name": "Family"
+    },
+    {
+      "id": 2,
+      "color": "#82C91E",
+      "icon": "briefcase",
+      "name": "Career"
+    },
+    {
+      "id": 3,
+      "color": "#FF4883",
+      "icon": "couch",
+      "name": "Entertainment"
+    },
+    {
+      "id": 4,
+      "color": "#FF9066",
+      "icon": "coins",
+      "name": "Casual"
+    },
+    {
+      "id": 5,
+      "color": "#FFCD41",
+      "icon": "utensils",
+      "name": "Lifestyle"
+    }
+  ]
+}

@@ -18,3 +18,19 @@ export const filterPercentages = (percentages) => {
 
   return sign + percentages + '%'
 }
+
+export const formatDate = date => {
+  const d = new Date(date)
+
+  return new Date(d.getTime() - d.getTimezoneOffset() * 60 * 1000).toISOString().split('T')[0]
+}
+
+export const dateFromNow = daysNum => {
+  const date = new Date()
+
+  date.setDate(date.getDate() - daysNum)
+
+  return date
+}
+
+export const getTransactionsFromDay = (transactions, day) => transactions.filter((t) => t.time.split(' ')[0] === day).slice(0, 5)

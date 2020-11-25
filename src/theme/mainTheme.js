@@ -32,6 +32,11 @@ export const theme = {
   },
   zindex: {
     dropdown: '99'
+  },
+  transition: {
+    duration: {
+      default: '0.25s'
+    }
   }
 }
 

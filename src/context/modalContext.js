@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 let ModalContext
-const { Provider } = (ModalContext = React.createContext())
+const { Provider } = (ModalContext = React.createContext(null))
 
 const ModalProvider = ({ children }) => {
   const { isModalOpen, handleModal, modalContent } = useModal()
@@ -17,7 +17,7 @@ const ModalProvider = ({ children }) => {
 }
 
 ModalProvider.propTypes = {
-  children: PropTypes.string
+  children: PropTypes.any
 }
 
-export default { ModalContext, ModalProvider }
+export { ModalContext, ModalProvider }

@@ -1,86 +1,40 @@
+import { AnimatePresence, motion } from 'framer-motion'
+import useOutsideClick from 'hooks/useOutsideClick'
 import PropTypes from 'prop-types'
-import React, { PureComponent } from 'react'
-import styled from 'styled-components'
+import React, { useRef, useState } from 'react'
 
-import Option from './Option'
-import { closeDropdown } from './utils/'
+import { StyledDropdown, StyledDropdownWrapper, StyledList } from './Dropdown.styles'
+import Option from './Option/Option'
 
-const StyledDropdown = styled.div`
-  background-color: white;
-  border-radius: 0.6rem;
-  box-shadow: 0 0.2rem 0.4rem hsla(0, 0%, 0%, 0.08);
-  margin-top: 6px;
-  padding-bottom: 0.4rem;
-  padding-top: 0.4rem;
-  position: absolute;
-  right: 0;
-  top: 100%;
-  z-index: ${({ theme }) => theme.zindex.dropdown};
-`
+function Dropdown({ content, onChange, options: optionsProps, trigger }) {
+  const [opened, setOpened] = useState(false)
+  const [options] = useState(optionsProps)
+  const [selected, setSelected] = useState(null)
 
-const StyledList = styled.ul`
-  font-size: ${({ theme }) => theme.fontSize.xs};
-  list-style-type: none;
-  min-width: 150px;
-`
+  const wrapperRef = useRef(null)
 
-const StyledDropdownWrapper = styled.div`
-  position: relative;
-`
+  const changeSelected = (value) => () => {
+    setOpened(false)
 
-class Dropdown extends PureComponent {
-  static propTypes = {
-    content: PropTypes.string,
-    onChange: PropTypes.func.isRequired,
-    options: PropTypes.array.isRequired,
-    trigger: PropTypes.func.isRequired
+    if (value === selected) return
+
+    setSelected(value)
+    onChange(value)
   }
 
-  state = {
-    opened: false,
-    options: this.props.options,
-    selected: null
-  }
-
-  componentDidMount() {
-    document.addEventListener('click', this.handleClickOutside)
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener('click', this.handleClickOutside)
-  }
-
-  changeSelected = (value) => () => {
-    this.setState(closeDropdown)
-
-    if (value === this.state.selected) return
-
-    this.setState({
-      selected: value
-    })
-
-    this.props.onChange(value)
-  }
-
-  handleClickOutside = (event) => {
-    if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
-      this.setState(closeDropdown)
-    }
-  }
-
-  renderOption = (option) => {
+  const renderOption = (option) => {
     let value = option.value
     const icon = option.icon
     if (typeof value === 'undefined') {
       value = option.label || option
     }
     const label = option.label || option.value || option
-    const isSelected = value === this.state.selected
+    const isSelected = value === selected
 
     return (
       <Option
         key={value}
-        changeSelected={this.changeSelected}
+        changeSelected={changeSelected}
         testId={`dropdown-option-${value}`}
         isSelected={isSelected}
         icon={icon}
@@ -90,35 +44,38 @@ class Dropdown extends PureComponent {
     )
   }
 
-  toggleDropdown = () => {
-    this.setState((state) => ({
-      opened: !state.opened
-    }))
+  const toggleDropdown = () => {
+    setOpened((prevState) => !prevState)
   }
 
-  setWrapperRef = (node) => {
-    this.wrapperRef = node
-  }
+  const TriggerElement = trigger
 
-  render() {
-    const TriggerElement = this.props.trigger
-    const { opened, options, selected } = this.state
-    const { content } = this.props
+  useOutsideClick(wrapperRef, () => setOpened(false))
 
-    return (
-      <StyledDropdownWrapper ref={this.setWrapperRef}>
-        <TriggerElement handleDropdownClick={this.toggleDropdown} isOpened={opened}>
-          {selected || content}
-        </TriggerElement>
+  return (
+    <StyledDropdownWrapper ref={wrapperRef}>
+      <TriggerElement handleDropdownClick={toggleDropdown} isOpened={opened} layout>
+        <AnimatePresence exitBeforeEnter>
+          <motion.span layout="position" key={selected || content} initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, transition: { duration: 0.2 } }}>{selected || content}</motion.span>
+        </AnimatePresence>
+      </TriggerElement>
 
-        {opened && (
-          <StyledDropdown data-testid="dropdown">
-            <StyledList>{options.map((option) => this.renderOption(option))}</StyledList>
-          </StyledDropdown>
-        )}
-      </StyledDropdownWrapper>
-    )
-  }
+      {opened && (
+        <StyledDropdown data-testid="dropdown">
+          <StyledList>{options.map((option) => renderOption(option))}</StyledList>
+        </StyledDropdown>
+      )}
+    </StyledDropdownWrapper>
+  )
+}
+
+Dropdown.propTypes = {
+  content: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
+  options: PropTypes.array.isRequired,
+  trigger: PropTypes.func.isRequired
 }
 
 export default Dropdown

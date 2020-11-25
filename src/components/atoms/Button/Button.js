@@ -16,6 +16,11 @@ const ButtonWrapper = styled.button`
   position: relative;
   text-align: left;
   text-transform: uppercase;
+  transition: background-color ${({ theme }) => theme.transition.duration.default};
+
+  &:hover {
+    background-color: ${({ theme }) => theme.highlightDarker};
+  }
 `
 
 const IconWrapper = styled.span`
@@ -32,10 +37,10 @@ const IconWrapper = styled.span`
   width: 2.7rem;
 `
 
-const Button = ({ children, className, icon, color }) => {
+const Button = ({ children, className, icon, color, ...props }) => {
   if (icon) {
     return (
-      <ButtonWrapper className={className} color={color} icon={icon}>
+      <ButtonWrapper className={className} color={color} icon={icon} {...props}>
         {children}{' '}
         <IconWrapper>
           <FontAwesomeIcon icon={icon} />
@@ -43,7 +48,11 @@ const Button = ({ children, className, icon, color }) => {
       </ButtonWrapper>
     )
   } else {
-    ;<ButtonWrapper color={color}>{children}</ButtonWrapper>
+    return (
+      <ButtonWrapper color={color} {...props}>
+        {children}
+      </ButtonWrapper>
+    )
   }
 }
 

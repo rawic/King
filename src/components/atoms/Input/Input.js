@@ -13,7 +13,7 @@ const StyledLabel = styled.label`
   display: inline-block;
   font-size: ${({ theme }) => theme.fontSize.sm};
   font-weight: ${({ theme }) => theme.fontWeight.bold};
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.6rem;
 `
 
 const StyledWrapper = styled.div`
@@ -55,21 +55,29 @@ const StyledInput = styled.input`
 
 let inputTemplate
 
-const Input = ({ className, label, icon, placeholder, onChange }) => {
+const Input = ({ className, label, icon, name, placeholder, id, onChange }) => {
   if (icon) {
     inputTemplate = (
       <StyledWrapper>
-        <StyledInput placeholder={placeholder} icon={icon} onChange={onChange} />
+        <StyledInput
+          name={name}
+          placeholder={placeholder}
+          id={id}
+          icon={icon}
+          onChange={onChange}
+        />
         <StyledFontAwesomeIcon icon={icon} />
       </StyledWrapper>
     )
   } else {
-    inputTemplate = <StyledInput placeholder={placeholder} />
+    inputTemplate = (
+      <StyledInput name={name} placeholder={placeholder} id={id} onChange={onChange} />
+    )
   }
 
   return (
     <StyledGroup className={className}>
-      {label && <StyledLabel>{label}</StyledLabel>}
+      {label && <StyledLabel htmlFor={id}>{label}</StyledLabel>}
       {inputTemplate}
     </StyledGroup>
   )
@@ -78,10 +86,11 @@ const Input = ({ className, label, icon, placeholder, onChange }) => {
 Input.propTypes = {
   className: PropTypes.string,
   icon: PropTypes.string,
+  id: PropTypes.string,
   label: PropTypes.string,
+  name: PropTypes.string,
   onChange: PropTypes.func.isRequired,
-  placeholder: PropTypes.string,
-  search: PropTypes.bool
+  placeholder: PropTypes.string
 }
 
 export default Input

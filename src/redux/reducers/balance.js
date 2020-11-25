@@ -1,4 +1,4 @@
-import { UPDATE_BALANCE } from 'redux/actions'
+import { UPDATE_BALANCE } from 'redux/actions/balanceActions'
 
 const initialState = {
   incomes: {
