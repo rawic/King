@@ -18,7 +18,11 @@ const Transactions = () => {
   }, [])
 
   const [transactions, categories, isLoading] = useSelector((state) => {
-    const { transactions: { transactions }, categories: { categories }, search } = state
+    const {
+      transactions: { transactions },
+      categories: { categories },
+      search
+    } = state
     const { filterBy, value } = search
 
     const isLoading = state.categories.loading || state.transactions.loading
@@ -30,14 +34,16 @@ const Transactions = () => {
         .filter(
           (t) => t.title.toLowerCase().includes(value.toLowerCase()) && t.type.includes(filterBy)
         )
-        .sort((a, b) => new Date(b.time) - new Date(a.time)), categories, isLoading
+        .sort((a, b) => new Date(b.time) - new Date(a.time)),
+      categories,
+      isLoading
     ]
   })
 
   const lastTransactions = getTransactionsFromDay(transactions, '2020-05-13')
   const secondLastTransactions = getTransactionsFromDay(transactions, '2020-05-12')
 
-  return !isLoading && (
+  return (
     <motion.div layout>
       <StyledSectionHeader layout>
         <StyledSectionTitle>Today</StyledSectionTitle>
@@ -45,13 +51,21 @@ const Transactions = () => {
         <AddTransaction />
       </StyledSectionHeader>
 
-      <TransactionsList transactions={lastTransactions} categories={categories} />
+      <TransactionsList
+        transactions={lastTransactions}
+        categories={categories}
+        isLoading={isLoading}
+      />
 
       <StyledSectionHeader layout>
         <StyledSectionTitle>Yesterday</StyledSectionTitle>
       </StyledSectionHeader>
 
-      <TransactionsList transactions={secondLastTransactions} categories={categories} />
+      <TransactionsList
+        transactions={secondLastTransactions}
+        categories={categories}
+        isLoading={isLoading}
+      />
     </motion.div>
   )
 }
