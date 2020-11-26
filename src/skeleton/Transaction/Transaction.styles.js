@@ -1,0 +1,18 @@
+// import { StyledSkeletonElement } from 'skeleton/Skeleton.styles'
+import styled from 'styled-components'
+
+const StyledTransactionWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.7rem;
+`
+
+const StyledTransactionHeader = styled.div`
+  max-width: 33rem;
+  display: flex;
+  align-items: center;
+  width: 100%;
+`
+
+export { StyledTransactionWrapper, StyledTransactionHeader }
