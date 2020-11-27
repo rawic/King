@@ -10,7 +10,10 @@ const SkeletonTransaction = () => (
   <StyledTransactionWrapper>
     <StyledTransactionHeader>
       <StyledTransactionElement $circle $right="1.6rem" />
-      <StyledTransactionElement $title $width="17rem" />
+      <div>
+        <StyledTransactionElement $width="17rem" />
+        <StyledTransactionElement $width="6.5rem" $height="1.8rem" $top="0.2rem" />
+      </div>
     </StyledTransactionHeader>
 
     <StyledTransactionElement $height="3.4rem" $width="9.5rem" $radius="1.2rem" />

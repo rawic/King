@@ -1,4 +1,4 @@
-import { StyledSkeletonElement } from 'skeleton/Skeleton.styles'
+import { StyledSkeletonElement } from 'skeletons/Skeleton.styles'
 import styled from 'styled-components'
 
 const StyledTransactionWrapper = styled.div`
@@ -16,7 +16,7 @@ const StyledTransactionHeader = styled.div`
 `
 
 const StyledTransactionElement = styled(StyledSkeletonElement)`
-  margin-top: 0;
+  margin-top: ${({ $top }) => $top || 0};
   margin-bottom: 0;
 `
 

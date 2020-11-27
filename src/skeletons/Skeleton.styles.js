@@ -7,8 +7,8 @@ const StyledSkeletonWrapper = styled.div`
 
 const StyledSkeletonElement = styled.div`
   background-color: #eee;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: ${({ $top }) => $top || '1rem'};
+  margin-bottom: 1rem;
   width: ${({ $width }) => $width || '100%'};
   height: ${({ $height }) => $height || '2rem'};
 
@@ -24,12 +24,7 @@ const StyledSkeletonElement = styled.div`
       height: 4.8rem;
       border-radius: 50%;
     `}
-    ${({ $title }) =>
-    $title &&
-    css`
-      height: 2rem;
-    `}
-    ${({ $radius }) =>
+  ${({ $radius }) =>
     $radius &&
     css`
       border-radius: ${$radius};

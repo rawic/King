@@ -1,7 +1,7 @@
 import Transaction from 'components/molecules/Transaction/Transaction'
 import PropTypes from 'prop-types'
 import React from 'react'
-import Skeleton from 'skeleton/Skeleton'
+import Skeleton from 'skeletons/Skeleton'
 
 import { StyledTransactionsList } from './TransactionsList.styles'
 
