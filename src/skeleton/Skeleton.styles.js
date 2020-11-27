@@ -9,30 +9,30 @@ const StyledSkeletonElement = styled.div`
   background-color: #eee;
   margin-top: 10px;
   margin-bottom: 10px;
-  width: ${({ width }) => width || '100%'};
-  height: ${({ height }) => height || '2rem'};
+  width: ${({ $width }) => $width || '100%'};
+  height: ${({ $height }) => $height || '2rem'};
 
-  ${({ right }) =>
-    right &&
+  ${({ $right }) =>
+    $right &&
     css`
-      margin-right: ${right};
+      margin-right: ${$right};
     `}
-  ${({ circle }) =>
-    circle &&
+  ${({ $circle }) =>
+    $circle &&
     css`
       width: 4.8rem;
       height: 4.8rem;
       border-radius: 50%;
     `}
-    ${({ title }) =>
-    title &&
+    ${({ $title }) =>
+    $title &&
     css`
       height: 2rem;
     `}
-    ${({ radius }) =>
-    radius &&
+    ${({ $radius }) =>
+    $radius &&
     css`
-      border-radius: ${radius};
+      border-radius: ${$radius};
     `};
 `
 

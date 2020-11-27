@@ -24,6 +24,8 @@ it('should toggle search filter dropdown on click', () => {
   expect(getByTestId('dropdown')).toBeTruthy()
 })
 
+jest.useFakeTimers()
+
 it('should change filter to Outcomes on click', () => {
   const { getByTestId } = render(
     <ThemeProvider theme={theme}>
@@ -38,13 +40,11 @@ it('should change filter to Outcomes on click', () => {
 
   const trigger = getByTestId('dropdown-trigger')
 
-  fireEvent.click(trigger)
-  fireEvent.click(getByTestId('dropdown-option-outcome'))
-
-  jest.useFakeTimers()
-
   setTimeout(() => {
+    fireEvent.click(trigger)
+    fireEvent.click(getByTestId('dropdown-option-outcome'))
     expect(trigger).toHaveTextContent('Outcomes')
-  }, 1500)
+  }, 1000)
+
   jest.runAllTimers()
 })

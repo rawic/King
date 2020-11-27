@@ -1,11 +1,14 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Button from 'components/atoms/Button/Button'
 import Input from 'components/atoms/Input/Input'
+import ListItem from 'components/molecules/ListItem/ListItem'
 import { ModalContext } from 'context/modalContext'
 import React, { useContext, useState } from 'react'
+import { useSelector } from 'react-redux'
 import { addTransaction } from 'redux/actions/transactionActions'
 import { store } from 'redux/store'
 import styled from 'styled-components'
-import { filterAmount, formatDate } from 'utilities'
+import { filterAmount, formatDateWithTime } from 'utilities'
 import { v4 as uuidv4 } from 'uuid'
 
 const StyledSectionButton = styled(Button)`
@@ -23,11 +26,10 @@ const transactionPlaceholder = {
 
 const AddTransactionForm = () => {
   const [transaction, setTransaction] = useState(transactionPlaceholder)
+  const total = useSelector(({ balance }) => balance.total)
 
   const handleChange = (e) => {
     const { name, value } = e.target
-
-    console.log(formatDate(new Date()))
 
     setTransaction({
       ...transaction,
@@ -39,14 +41,16 @@ const AddTransactionForm = () => {
     e.preventDefault()
 
     const { title, type, amount } = transaction
+    console.log(formatDateWithTime(new Date()))
+
     const newTransaction = {
       id: uuidv4(),
-      amount,
-      category: 3,
-      time: '2020-05-13 23:59',
       title,
       type,
-      total: parseFloat(3091.51) + amount
+      category: 3,
+      amount,
+      time: formatDateWithTime(new Date()),
+      total: parseFloat(total) + amount
     }
 
     return store.dispatch(addTransaction(newTransaction))
@@ -78,6 +82,16 @@ const AddTransactionForm = () => {
         value={transaction.amount}
         onChange={handleChange}
       />
+
+      <ListItem>
+        <ListItem.Avatar color="red">
+          <FontAwesomeIcon icon="times" />
+        </ListItem.Avatar>
+        <ListItem.Content>
+          <ListItem.Heading>Career</ListItem.Heading>
+          <ListItem.Text big>Incomes from my job</ListItem.Text>
+        </ListItem.Content>
+      </ListItem>
 
       <select name="type" id="" value={transaction.type} onChange={handleChange}>
         <option value="income">Income</option>

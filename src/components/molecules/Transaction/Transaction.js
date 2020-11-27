@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Paragraph from 'components/atoms/Paragraph/Paragraph'
 import Dropdown from 'components/molecules/Dropdown/Dropdown'
+import ListItem from 'components/molecules/ListItem/ListItem'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { filterAmount } from 'utilities'
@@ -8,10 +8,8 @@ import { filterAmount } from 'utilities'
 import ActionButton from './ActionButton/ActionButton'
 import {
   StyledBadge,
-  StyledCategoryIconCircle,
   StyledClock,
-  StyledHeader,
-  StyledHeading,
+  StyledListItem,
   StyledTime,
   StyledTotalAmount,
   StyledWrapper
@@ -27,16 +25,15 @@ const Transaction = ({ transaction, category, total }) => {
 
   return (
     <StyledWrapper layout="position">
-      <StyledHeader>
-        <StyledCategoryIconCircle color={color}>
+      <StyledListItem as="header">
+        <ListItem.Avatar color={color}>
           <FontAwesomeIcon icon={icon} />
-        </StyledCategoryIconCircle>
-
-        <div>
-          <StyledHeading>{title}</StyledHeading>
-          <Paragraph big>{name}</Paragraph>
-        </div>
-      </StyledHeader>
+        </ListItem.Avatar>
+        <ListItem.Content>
+          <ListItem.Heading>{title}</ListItem.Heading>
+          <ListItem.Text big>{name}</ListItem.Text>
+        </ListItem.Content>
+      </StyledListItem>
 
       <StyledBadge type={type} transaction>
         {filterAmount(amount, true)}
