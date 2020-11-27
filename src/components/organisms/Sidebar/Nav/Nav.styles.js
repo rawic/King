@@ -1,8 +1,7 @@
 import NavLink from 'components/atoms/NavLink/NavLink'
-import { motion } from 'framer-motion'
 import styled from 'styled-components'
 
-export const StyledNav = styled(motion.nav)`
+export const StyledNav = styled.nav`
   margin-bottom: 3.4rem;
 `
 

@@ -8,7 +8,7 @@ import { StyledFilterButton, StyledIconWrapper } from './FilterButton.styles'
 const FilterButton = ({ children, handleDropdownClick, isOpened }) => {
   return (
     <StyledFilterButton onClick={handleDropdownClick} data-testid="dropdown-trigger" layout>
-      {children} &nbsp;
+      {children}
       <StyledIconWrapper layout>
         {isOpened ? <FontAwesomeIcon icon="caret-up" /> : <FontAwesomeIcon icon="caret-down" />}
       </StyledIconWrapper>

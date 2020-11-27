@@ -3,13 +3,12 @@ import Paragraph from 'components/atoms/Paragraph/Paragraph'
 import BalanceCard from 'components/molecules/BalanceCard/BalanceCard'
 import Search from 'components/molecules/Search/Search'
 import Transactions from 'components/organisms/Transactions/Transactions'
-import { motion } from 'framer-motion'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
 
-const StyledHeaderWrapper = styled(motion.div)`
+const StyledHeaderWrapper = styled.div`
   align-items: center;
   display: flex;
   justify-content: space-between;
@@ -31,7 +30,7 @@ const StyledSearch = styled(Search)`
   width: 100%;
 `
 
-const StyledBalanceCards = styled(motion.div)`
+const StyledBalanceCards = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 4rem;
@@ -72,12 +71,12 @@ class Dashboard extends React.PureComponent {
 
     return (
       <>
-        <StyledHeaderWrapper layout>
+        <StyledHeaderWrapper>
           <Header title={title} />
           <StyledSearch icon="search" placeholder="Search transactions..." />
         </StyledHeaderWrapper>
 
-        <StyledBalanceCards layout>
+        <StyledBalanceCards>
           <BalanceCard balance={incomes} type="incomes">
             Balance up by
           </BalanceCard>

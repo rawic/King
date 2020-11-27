@@ -1,7 +1,6 @@
-import { motion } from 'framer-motion'
 import styled from 'styled-components'
 
-export const StyledAppContent = styled(motion.section)`
+export const StyledAppContent = styled.section`
   background-color: white;
   border-bottom-left-radius: 1.2rem;
   border-top-left-radius: 1.2rem;

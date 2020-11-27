@@ -1,11 +1,11 @@
-// import { StyledSkeletonElement } from 'skeleton/Skeleton.styles'
+import { StyledSkeletonElement } from 'skeleton/Skeleton.styles'
 import styled from 'styled-components'
 
 const StyledTransactionWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 1.7rem;
+  margin-top: 3.7rem;
 `
 
 const StyledTransactionHeader = styled.div`
@@ -15,4 +15,9 @@ const StyledTransactionHeader = styled.div`
   width: 100%;
 `
 
-export { StyledTransactionWrapper, StyledTransactionHeader }
+const StyledTransactionElement = styled(StyledSkeletonElement)`
+  margin-top: 0;
+  margin-bottom: 0;
+`
+
+export { StyledTransactionWrapper, StyledTransactionHeader, StyledTransactionElement }

@@ -2,7 +2,7 @@ import fetchCategories from 'api/fetchCategories'
 import fetchTransactions from 'api/fetchTransactions'
 import AddTransaction from 'components/molecules/Transaction/AddTransaction/AddTransaction'
 import TransactionsList from 'components/molecules/TransactionsList/TransactionsList'
-import { motion } from 'framer-motion'
+import { AnimateSharedLayout, motion } from 'framer-motion'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getTransactionsFromDay } from 'utilities'
@@ -44,29 +44,33 @@ const Transactions = () => {
   const secondLastTransactions = getTransactionsFromDay(transactions, '2020-05-12')
 
   return (
-    <motion.div layout>
-      <StyledSectionHeader layout>
-        <StyledSectionTitle>Today</StyledSectionTitle>
+    <AnimateSharedLayout>
+      <motion.div layout>
+        <StyledSectionHeader layout>
+          <StyledSectionTitle>Today</StyledSectionTitle>
 
-        <AddTransaction />
-      </StyledSectionHeader>
+          <AddTransaction />
+        </StyledSectionHeader>
 
-      <TransactionsList
-        transactions={lastTransactions}
-        categories={categories}
-        isLoading={isLoading}
-      />
+        <TransactionsList
+          transactions={lastTransactions}
+          categories={categories}
+          isLoading={isLoading}
+        />
+      </motion.div>
 
-      <StyledSectionHeader layout>
-        <StyledSectionTitle>Yesterday</StyledSectionTitle>
-      </StyledSectionHeader>
+      <motion.div layout>
+        <StyledSectionHeader layout>
+          <StyledSectionTitle>Yesterday</StyledSectionTitle>
+        </StyledSectionHeader>
 
-      <TransactionsList
-        transactions={secondLastTransactions}
-        categories={categories}
-        isLoading={isLoading}
-      />
-    </motion.div>
+        <TransactionsList
+          transactions={secondLastTransactions}
+          categories={categories}
+          isLoading={isLoading}
+        />
+      </motion.div>
+    </AnimateSharedLayout>
   )
 }
 

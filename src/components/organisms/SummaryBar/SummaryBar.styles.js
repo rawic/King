@@ -1,7 +1,6 @@
-import { motion } from 'framer-motion'
 import styled from 'styled-components'
 
-export const StyledSummaryBar = styled(motion.section)`
+export const StyledSummaryBar = styled.section`
   background-color: hsl(210, 66.7%, 98.8%);
   border-bottom-left-radius: 1.2rem;
   border-top-right-radius: 1.2rem;

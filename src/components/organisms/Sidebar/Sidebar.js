@@ -10,7 +10,7 @@ import { StyledInnerWrapper, StyledLogo, StyledWrapper } from './Sidebar.styles'
 
 const Sidebar = ({ notifications }) => (
   <StyledWrapper>
-    <StyledInnerWrapper layout>
+    <StyledInnerWrapper>
       <Link to="/">
         <StyledLogo />
       </Link>
@@ -19,7 +19,7 @@ const Sidebar = ({ notifications }) => (
 
     <Nav />
 
-    <StyledInnerWrapper bottom="2.5" layout>
+    <StyledInnerWrapper bottom="2.5">
       <NavTitle>Notifications</NavTitle>
     </StyledInnerWrapper>
 

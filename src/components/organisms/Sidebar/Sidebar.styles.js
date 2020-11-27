@@ -1,5 +1,4 @@
 import Logo from 'components/atoms/Logo/Logo'
-import { motion } from 'framer-motion'
 import styled, { css } from 'styled-components'
 
 export const StyledWrapper = styled.div`
@@ -12,7 +11,7 @@ export const StyledWrapper = styled.div`
   width: 100%;
 `
 
-export const StyledInnerWrapper = styled(motion.div)`
+export const StyledInnerWrapper = styled.div`
   padding-left: 3.5rem;
   padding-right: 3.5rem;
   ${({ bottom }) =>

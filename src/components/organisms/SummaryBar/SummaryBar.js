@@ -3,7 +3,7 @@ import React from 'react'
 import { StyledSummaryBar, StyledTitle } from './SummaryBar.styles'
 
 const SummaryBar = () => (
-  <StyledSummaryBar layout="position">
+  <StyledSummaryBar>
     <StyledTitle>Monthly summary</StyledTitle>
   </StyledSummaryBar>
 )

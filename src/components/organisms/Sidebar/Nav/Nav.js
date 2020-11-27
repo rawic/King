@@ -5,7 +5,7 @@ import { NavLink as RouterNavLink } from 'react-router-dom'
 import { StyledNav, StyledNavLink } from './Nav.styles'
 
 const Nav = () => (
-  <StyledNav layout>
+  <StyledNav>
     <ul>
       <li>
         <StyledNavLink to="/" as={RouterNavLink} exact>

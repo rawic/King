@@ -1,5 +1,4 @@
 import { ModalProvider } from 'context/modalContext'
-import { AnimateSharedLayout, motion } from 'framer-motion'
 import PropTypes from 'prop-types'
 import React from 'react'
 import registerFaIcons from 'registerFaIcons'
@@ -14,9 +13,7 @@ const MainTemplate = ({ children }) => (
     <GlobalStyle />
     <ThemeProvider theme={theme}>
       <ModalProvider>
-        <AnimateSharedLayout>
-          <motion.div layout className="app-container">{children}</motion.div>
-        </AnimateSharedLayout>
+        <div className="app-container">{children}</div>
       </ModalProvider>
     </ThemeProvider>
   </React.Fragment>

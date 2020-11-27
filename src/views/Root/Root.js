@@ -14,7 +14,7 @@ const Root = () => (
   <HashRouter basename="/">
     <MainTemplate>
       <Sidebar />
-      <StyledAppContent layout>
+      <StyledAppContent>
         <Switch>
           <Route exact path="/" component={Dashboard} />
           <Route path="/analytics">

@@ -1,4 +1,4 @@
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, AnimateSharedLayout, motion } from 'framer-motion'
 import useOutsideClick from 'hooks/useOutsideClick'
 import PropTypes from 'prop-types'
 import React, { useRef, useState } from 'react'
@@ -54,13 +54,21 @@ function Dropdown({ content, onChange, options: optionsProps, trigger }) {
 
   return (
     <StyledDropdownWrapper ref={wrapperRef}>
-      <TriggerElement handleDropdownClick={toggleDropdown} isOpened={opened} layout>
-        <AnimatePresence exitBeforeEnter>
-          <motion.span layout="position" key={selected || content} initial={{ opacity: 0, y: 50 }}
+      <AnimateSharedLayout>
+        <TriggerElement handleDropdownClick={toggleDropdown} isOpened={opened} layout>
+          <AnimatePresence exitBeforeEnter>
+            <motion.span
+              layout
+              key={selected || content}
+              initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, transition: { duration: 0.2 } }}>{selected || content}</motion.span>
-        </AnimatePresence>
-      </TriggerElement>
+              exit={{ opacity: 0, transition: { duration: 0.2 } }}
+            >
+              {selected || content}
+            </motion.span>
+          </AnimatePresence>
+        </TriggerElement>
+      </AnimateSharedLayout>
 
       {opened && (
         <StyledDropdown data-testid="dropdown">

@@ -5,11 +5,10 @@ import Skeleton from 'skeleton/Skeleton'
 
 import { StyledTransactionsList } from './TransactionsList.styles'
 
-const TransactionsList = ({ transactions, categories }) => {
+const TransactionsList = ({ transactions, categories, isLoading }) => {
   return (
     <StyledTransactionsList layout="position">
-      {transactions.length > 0 &&
-        categories.length > 0 &&
+      {!isLoading &&
         transactions.map((transaction) => {
           const total = transaction.total - transaction.amount
           const category = categories.find((category) => category.id === transaction.category)
@@ -24,7 +23,7 @@ const TransactionsList = ({ transactions, categories }) => {
           )
         })}
 
-      {(!transactions.length || !categories.length) && (
+      {isLoading && (
         <Skeleton>
           {[...Array(5).keys()].map((i) => (
             <Skeleton.Transaction key={i} />
@@ -37,7 +36,8 @@ const TransactionsList = ({ transactions, categories }) => {
 
 TransactionsList.propTypes = {
   transactions: PropTypes.array.isRequired,
-  categories: PropTypes.array.isRequired
+  categories: PropTypes.array.isRequired,
+  isLoading: PropTypes.bool.isRequired
 }
 
 export default TransactionsList
