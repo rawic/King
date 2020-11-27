@@ -1,6 +1,6 @@
 import { ADD_NOTIFICATION } from 'redux/actions/notificationActions'
 
-const initialState = [
+export const initialState = [
   {
     id: 1,
     type: 'income',

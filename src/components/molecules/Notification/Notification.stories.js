@@ -1,7 +1,12 @@
 import { select, withKnobs } from '@storybook/addon-knobs'
 import React from 'react'
+import styled from 'styled-components'
 
 import Notification from './Notification'
+
+const StyledWrapper = styled.div`
+  width: 25rem;
+`
 
 export default {
   title: 'Notification',
@@ -16,19 +21,24 @@ export const Notifications = () => {
       id: 1,
       type: 'income',
       message: '',
-      price: '45,00',
+      amount: '45,00',
       created: '23:42'
     },
     Outcome: {
       id: 2,
       type: 'outcome',
       message: '',
-      price: '14,49',
+      amount: '14,49',
       created: '15:32'
     }
   }
   const defaultValue = options.Income
   const groupId = 'GROUP-ID1'
   const value = select(label, options, defaultValue, groupId)
-  return <Notification data={value}></Notification>
+
+  return (
+    <StyledWrapper>
+      <Notification details={value} />
+    </StyledWrapper>
+  )
 }

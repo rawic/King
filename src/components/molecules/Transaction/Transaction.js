@@ -20,7 +20,7 @@ import { handleTransactionAction, transactionActions } from './Transaction.utils
 
 const Transaction = ({ transaction, category, total }) => {
   const { amount, id, time, title, type } = transaction
-  const { icon, color } = category
+  const { name, icon, color } = category
 
   const transactionTime = time.split(' ')[1]
   const totalAmount = total + amount

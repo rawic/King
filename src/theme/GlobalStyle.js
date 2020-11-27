@@ -102,7 +102,7 @@ const GlobalStyle = createGlobalStyle`
     display: flex;
     margin-left: auto;
     margin-right: auto;
-    max-width: 1600px;
+    width: 1600px;
     overflow: hidden;
   }
 `
