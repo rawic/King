@@ -12,7 +12,7 @@ import {
 const ListItem = (props) => <ListItemWrapper {...props}>{props.children}</ListItemWrapper>
 
 ListItem.propTypes = {
-  children: PropTypes.element.isRequired
+  children: PropTypes.node.isRequired
 }
 
 ListItem.Avatar = ListItemAvatar

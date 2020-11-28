@@ -1,8 +1,8 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Button from 'components/atoms/Button/Button'
 import Input from 'components/atoms/Input/Input'
+import Dropdown2 from 'components/molecules/Dropdown2/Dropdown2'
 import ListItem from 'components/molecules/ListItem/ListItem'
-import Select from 'components/molecules/Select/Select'
 import { ModalContext } from 'context/modalContext'
 import React, { useContext, useState } from 'react'
 import { useSelector } from 'react-redux'
@@ -24,6 +24,16 @@ const transactionPlaceholder = {
   type: 'income',
   total: 0
 }
+
+const trigger = ({ children, onClick }) => {
+  return (
+    <button type="button" onClick={onClick}>
+      {children}
+    </button>
+  )
+}
+
+const dothis = (value) => console.log(value)
 
 const AddTransactionForm = () => {
   const [transaction, setTransaction] = useState(transactionPlaceholder)
@@ -76,9 +86,9 @@ const AddTransactionForm = () => {
         value={transaction.category}
         onChange={handleChange}
       />
-      <Select>
+      <Dropdown2 trigger={trigger} onChange={dothis} defaultValue="asd">
         {categories.map(({ id, color, icon, name }) => (
-          <Select.Option key={id}>
+          <Dropdown2.Option key={id} value={name}>
             <ListItem>
               <ListItem.Avatar color={color}>
                 <FontAwesomeIcon icon={icon} />
@@ -88,9 +98,10 @@ const AddTransactionForm = () => {
                 <ListItem.Text big>Incomes from my job</ListItem.Text>
               </ListItem.Content>
             </ListItem>
-          </Select.Option>
+          </Dropdown2.Option>
         ))}
-      </Select>
+      </Dropdown2>
+
       <Input
         placeholder={filterAmount(2345.32)}
         name="amount"
