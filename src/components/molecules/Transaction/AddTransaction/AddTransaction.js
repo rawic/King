@@ -2,6 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Button from 'components/atoms/Button/Button'
 import Input from 'components/atoms/Input/Input'
 import ListItem from 'components/molecules/ListItem/ListItem'
+import Select from 'components/molecules/Select/Select'
 import { ModalContext } from 'context/modalContext'
 import React, { useContext, useState } from 'react'
 import { useSelector } from 'react-redux'
@@ -27,6 +28,7 @@ const transactionPlaceholder = {
 const AddTransactionForm = () => {
   const [transaction, setTransaction] = useState(transactionPlaceholder)
   const total = useSelector(({ balance }) => balance.total)
+  const categories = useSelector(({ categories: { categories } }) => categories)
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -74,6 +76,21 @@ const AddTransactionForm = () => {
         value={transaction.category}
         onChange={handleChange}
       />
+      <Select>
+        {categories.map(({ id, color, icon, name }) => (
+          <Select.Option key={id}>
+            <ListItem>
+              <ListItem.Avatar color={color}>
+                <FontAwesomeIcon icon={icon} />
+              </ListItem.Avatar>
+              <ListItem.Content>
+                <ListItem.Heading>{name}</ListItem.Heading>
+                <ListItem.Text big>Incomes from my job</ListItem.Text>
+              </ListItem.Content>
+            </ListItem>
+          </Select.Option>
+        ))}
+      </Select>
       <Input
         placeholder={filterAmount(2345.32)}
         name="amount"
@@ -82,16 +99,6 @@ const AddTransactionForm = () => {
         value={transaction.amount}
         onChange={handleChange}
       />
-
-      <ListItem>
-        <ListItem.Avatar color="red">
-          <FontAwesomeIcon icon="times" />
-        </ListItem.Avatar>
-        <ListItem.Content>
-          <ListItem.Heading>Career</ListItem.Heading>
-          <ListItem.Text big>Incomes from my job</ListItem.Text>
-        </ListItem.Content>
-      </ListItem>
 
       <select name="type" id="" value={transaction.type} onChange={handleChange}>
         <option value="income">Income</option>
