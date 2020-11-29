@@ -51,7 +51,7 @@ function Dropdown2({ className, children, onChange, trigger, open }) {
     <DropdownWrapper ref={wrapperRef} className={className}>
       <div onClick={toggleDropdown}>{trigger}</div>
 
-      {opened && (
+      {(open || opened) && (
         <DropdownMenu data-testid="dropdown">
           <DropdownList>{renderMenu()}</DropdownList>
         </DropdownMenu>

@@ -29,6 +29,8 @@ const transactionPlaceholder = {
 const StyledDropdown2 = styled(Dropdown2)`
   ${DropdownMenu} {
     position: static;
+    height: 250px;
+    overflow: hidden;
   }
 `
 
