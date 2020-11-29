@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Button from 'components/atoms/Button/Button'
 import Input from 'components/atoms/Input/Input'
+import { DropdownMenu } from 'components/molecules/Dropdown2/Dropdown.styles'
 import Dropdown2 from 'components/molecules/Dropdown2/Dropdown2'
 import ListItem from 'components/molecules/ListItem/ListItem'
 import { ModalContext } from 'context/modalContext'
@@ -25,15 +26,11 @@ const transactionPlaceholder = {
   total: 0
 }
 
-const trigger = ({ children, onClick }) => {
-  return (
-    <button type="button" onClick={onClick}>
-      {children}
-    </button>
-  )
-}
-
-const dothis = (value) => console.log(value)
+const StyledDropdown2 = styled(Dropdown2)`
+  ${DropdownMenu} {
+    position: static;
+  }
+`
 
 const AddTransactionForm = () => {
   const [transaction, setTransaction] = useState(transactionPlaceholder)
@@ -46,6 +43,13 @@ const AddTransactionForm = () => {
     setTransaction({
       ...transaction,
       [name]: value
+    })
+  }
+
+  const handleCategoryChange = (value) => {
+    setTransaction({
+      ...transaction,
+      category: value
     })
   }
 
@@ -68,6 +72,17 @@ const AddTransactionForm = () => {
     return store.dispatch(addTransaction(newTransaction))
   }
 
+  const TransactionCategory = (
+    <Input
+      placeholder="Select transaction category"
+      name="category"
+      id="transaction_category"
+      label="Transaction category"
+      value={transaction.category}
+      onChange={handleChange}
+    />
+  )
+
   return (
     <form action="">
       <Input
@@ -78,15 +93,8 @@ const AddTransactionForm = () => {
         value={transaction.name}
         onChange={handleChange}
       />
-      <Input
-        placeholder="Select transaction category"
-        name="category"
-        id="transaction_category"
-        label="Transaction category"
-        value={transaction.category}
-        onChange={handleChange}
-      />
-      <Dropdown2 trigger={trigger} onChange={dothis} defaultValue="asd">
+
+      <StyledDropdown2 trigger={TransactionCategory} onChange={handleCategoryChange} open>
         {categories.map(({ id, color, icon, name }) => (
           <Dropdown2.Option key={id} value={name}>
             <ListItem>
@@ -100,7 +108,7 @@ const AddTransactionForm = () => {
             </ListItem>
           </Dropdown2.Option>
         ))}
-      </Dropdown2>
+      </StyledDropdown2>
 
       <Input
         placeholder={filterAmount(2345.32)}

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const StyledDropdown = styled.div`
+const DropdownMenu = styled.div`
   background-color: white;
   border-radius: 0.6rem;
   box-shadow: 0 0.2rem 0.4rem hsla(0, 0%, 0%, 0.08);
@@ -13,14 +13,14 @@ const StyledDropdown = styled.div`
   z-index: ${({ theme }) => theme.zindex.dropdown};
 `
 
-const StyledList = styled.ul`
+const DropdownList = styled.ul`
   font-size: ${({ theme }) => theme.fontSize.xs};
   list-style-type: none;
   min-width: 150px;
 `
 
-const StyledDropdownWrapper = styled.div`
+const DropdownWrapper = styled.div`
   position: relative;
 `
 
-export { StyledDropdown, StyledList, StyledDropdownWrapper }
+export { DropdownMenu, DropdownList, DropdownWrapper }

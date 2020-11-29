@@ -5,7 +5,6 @@ const StyledOption = styled.li`
   align-items: center;
   cursor: pointer;
   display: flex;
-  justify-content: flex-end;
   padding: 0.6rem 1.5rem;
 
   &:hover {

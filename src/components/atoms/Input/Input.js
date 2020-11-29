@@ -55,7 +55,7 @@ const StyledInput = styled.input`
 
 let inputTemplate
 
-const Input = ({ className, label, icon, name, placeholder, id, onChange }) => {
+const Input = ({ className, label, icon, name, placeholder, id, value, onChange }) => {
   if (icon) {
     inputTemplate = (
       <StyledWrapper>
@@ -64,6 +64,7 @@ const Input = ({ className, label, icon, name, placeholder, id, onChange }) => {
           placeholder={placeholder}
           id={id}
           icon={icon}
+          value={value}
           onChange={onChange}
         />
         <StyledFontAwesomeIcon icon={icon} />
@@ -71,7 +72,13 @@ const Input = ({ className, label, icon, name, placeholder, id, onChange }) => {
     )
   } else {
     inputTemplate = (
-      <StyledInput name={name} placeholder={placeholder} id={id} onChange={onChange} />
+      <StyledInput
+        name={name}
+        placeholder={placeholder}
+        id={id}
+        value={value}
+        onChange={onChange}
+      />
     )
   }
 
@@ -88,6 +95,7 @@ Input.propTypes = {
   icon: PropTypes.string,
   id: PropTypes.string,
   label: PropTypes.string,
+  value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   name: PropTypes.string,
   onChange: PropTypes.func.isRequired,
   placeholder: PropTypes.string
