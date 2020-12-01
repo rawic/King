@@ -1,9 +1,9 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Button from 'components/atoms/Button/Button'
 import Input from 'components/atoms/Input/Input'
-import { DropdownMenu } from 'components/molecules/Dropdown2/Dropdown.styles'
+import { DropdownList, DropdownMenu } from 'components/molecules/Dropdown2/Dropdown.styles'
 import Dropdown2 from 'components/molecules/Dropdown2/Dropdown2'
-import { StyledOption } from 'components/molecules/Dropdown2/Option/Option.styles'
+import StyledOption from 'components/molecules/Dropdown2/Option/Option.styles'
 import ListItem from 'components/molecules/ListItem/ListItem'
 import { ModalContext } from 'context/modalContext'
 import React, { useContext, useState } from 'react'
@@ -29,18 +29,40 @@ const transactionPlaceholder = {
 
 const StyledDropdown2 = styled(Dropdown2)`
   ${DropdownMenu} {
-    position: static;
-    height: 250px;
-    overflow: hidden;
+    position: relative;
     box-shadow: none;
+    &::after {
+      position: absolute;
+      bottom: 0;
+      height: 100%;
+      width: 100%;
+      z-index: 0;
+      content: '';
+      background: linear-gradient(to top, rgba(255, 255, 255, 1) 11%, rgba(255, 255, 255, 0) 20%);
+      pointer-events: none;
+    }
+  }
+  ${DropdownList} {
+    padding-bottom: 3rem;
   }
   ${StyledOption} {
     border-radius: 0.8rem;
     &:hover {
-      background-color: hsla(0, 0%, 97%, 0.7);
+      background-color: rgba(248, 248, 248, 0.7);
     }
   }
+  .active {
+    color: ${({ theme }) => theme.highlight};
+  }
 `
+
+// const StyledListItem = styled(ListItem)`
+//   background-color: 'red';
+//   ${({ isActive }) => {
+//     console.log(isActive)
+//     return isActive ? 'background-color: red;' : null
+//   }}
+// `
 
 const AddTransactionForm = () => {
   const [transaction, setTransaction] = useState(transactionPlaceholder)
@@ -107,8 +129,8 @@ const AddTransactionForm = () => {
 
       <StyledDropdown2 trigger={TransactionCategory} onChange={handleCategoryChange} open>
         {categories.map(({ id, color, icon, name }) => (
-          <Dropdown2.Option key={id} value={name}>
-            <ListItem>
+          <StyledDropdown2.Option key={id} value={name}>
+            <ListItem isActive={transaction.category === name}>
               <ListItem.Avatar color={color}>
                 <FontAwesomeIcon icon={icon} />
               </ListItem.Avatar>
@@ -117,7 +139,7 @@ const AddTransactionForm = () => {
                 <ListItem.Text big>Incomes from my job</ListItem.Text>
               </ListItem.Content>
             </ListItem>
-          </Dropdown2.Option>
+          </StyledDropdown2.Option>
         ))}
       </StyledDropdown2>
 

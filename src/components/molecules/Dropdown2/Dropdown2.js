@@ -1,16 +1,11 @@
 import useOutsideClick from 'hooks/useOutsideClick'
 import PropTypes from 'prop-types'
 import React, { useEffect, useRef, useState } from 'react'
+import SimpleBar from 'simplebar-react'
 
 import { DropdownList, DropdownMenu, DropdownWrapper } from './Dropdown.styles'
 import Option from './Option/Option'
-
-const OptionWrapper = ({ children }, ...props) => <li {...props}>{children}</li>
-OptionWrapper.displayName = 'OptionWrapper'
-
-OptionWrapper.propTypes = {
-  children: PropTypes.node.isRequired
-}
+import OptionWrapper from './OptionWrapper/OptionWrapper'
 
 function Dropdown2({ className, children, onChange, trigger, open }) {
   const [opened, setOpened] = useState(false)
@@ -37,11 +32,16 @@ function Dropdown2({ className, children, onChange, trigger, open }) {
   }
 
   const renderMenu = () =>
-    React.Children.map(children, (item, key) => {
-      if (item.type.displayName === 'OptionWrapper') {
+    React.Children.map(children, ({ props, type }, key) => {
+      if (type.displayName === 'OptionWrapper') {
         return (
-          <Option key={key} changeSelected={changeSelected} value={item.props.value}>
-            {item.props.children}
+          <Option
+            key={key}
+            changeSelected={changeSelected}
+            value={props.value}
+            isSelected={props.value === selected}
+          >
+            {props.children}
           </Option>
         )
       }
@@ -53,7 +53,9 @@ function Dropdown2({ className, children, onChange, trigger, open }) {
 
       {(open || opened) && (
         <DropdownMenu data-testid="dropdown">
-          <DropdownList>{renderMenu()}</DropdownList>
+          <SimpleBar style={{ maxHeight: 300 }} autoHide={false}>
+            <DropdownList>{renderMenu()}</DropdownList>
+          </SimpleBar>
         </DropdownMenu>
       )}
     </DropdownWrapper>
@@ -62,8 +64,9 @@ function Dropdown2({ className, children, onChange, trigger, open }) {
 
 Dropdown2.propTypes = {
   className: PropTypes.string,
-  children: PropTypes.any,
-  onChange: PropTypes.func.isRequired,
+  children: PropTypes.node,
+  value: PropTypes.string,
+  onChange: PropTypes.func,
   trigger: PropTypes.object,
   open: PropTypes.bool
 }

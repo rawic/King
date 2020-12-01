@@ -43,3 +43,16 @@ export const StyledCloseBtn = styled.button`
 export const StyledHeading = styled(Heading)`
   margin-bottom: 3rem;
 `
+
+export const ModalTransition = {
+  show: {
+    y: '-50%',
+    x: '-50%',
+    transition: { duration: 0.1 }
+  },
+  hide: {
+    y: 'calc(-50% - 50px)',
+    x: 'calc(-50% + 8px)',
+    transition: { y: { duration: 0.1 }, x: { duration: 0 } }
+  }
+}

@@ -1,10 +1,22 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import type { BodyScrollOptions } from 'body-scroll-lock'
+import { clearAllBodyScrollLocks, disableBodyScroll, enableBodyScroll } from 'body-scroll-lock'
 import { ModalContext } from 'context/modalContext'
 import { AnimatePresence } from 'framer-motion'
 import useOutsideClick from 'hooks/useOutsideClick'
-import React, { useContext, useRef } from 'react'
+import React, { useContext, useEffect, useRef } from 'react'
 
-import { StyledCloseBtn, StyledHeading, StyledModal, StyledOverlay } from './Modal.styles'
+import {
+  ModalTransition,
+  StyledCloseBtn,
+  StyledHeading,
+  StyledModal,
+  StyledOverlay
+} from './Modal.styles'
+
+const options: BodyScrollOptions = {
+  reserveScrollBarGap: true
+}
 
 const Modal = () => {
   const { isModalOpen, handleModal, modalContent } = useContext(ModalContext)
@@ -12,6 +24,12 @@ const Modal = () => {
   const wrapperRef = useRef(null)
 
   useOutsideClick(wrapperRef, () => handleModal())
+
+  useEffect(() => {
+    isModalOpen && disableBodyScroll('document.body', options)
+    !isModalOpen && enableBodyScroll('document.body')
+    return () => clearAllBodyScrollLocks()
+  }, [isModalOpen])
 
   return (
     <AnimatePresence>
@@ -23,8 +41,8 @@ const Modal = () => {
         >
           <StyledModal
             initial={{ y: 'calc(-50% - 50px)', x: '-50%' }}
-            animate={{ y: '-50%', x: '-50%', transition: { duration: 0.1 } }}
-            exit={{ y: 'calc(-50% - 50px)', x: '-50%', transition: { duration: 0.1 } }}
+            animate={ModalTransition.show}
+            exit={ModalTransition.hide}
             ref={wrapperRef}
           >
             <StyledCloseBtn onClick={() => handleModal()}>

@@ -1,3 +1,4 @@
+import simplebar from 'simplebar/dist/simplebar.min.css'
 import { createGlobalStyle } from 'styled-components'
 
 const GlobalStyle = createGlobalStyle` 
@@ -41,7 +42,7 @@ const GlobalStyle = createGlobalStyle`
     font-variant-ligatures: no-common-ligatures;
     line-height: 1.5;
     min-height: 100vh;
-    padding: 100px 160px;
+    
     scroll-behavior: smooth;
     text-rendering: optimizeSpeed;
   }
@@ -95,6 +96,10 @@ const GlobalStyle = createGlobalStyle`
     }
   }
 
+  #root {
+    padding: 100px 160px;
+  }
+
   .app-container {
     background-color: hsl(0, 0%, 97.3%);
     border-radius: 12px;
@@ -105,6 +110,8 @@ const GlobalStyle = createGlobalStyle`
     width: 1600px;
     overflow: hidden;
   }
+
+  ${simplebar}
 `
 
 export default GlobalStyle

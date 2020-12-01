@@ -16,7 +16,7 @@ import {
 } from './Transaction.styles'
 import { handleTransactionAction, transactionActions } from './Transaction.utils'
 
-const Transaction = ({ transaction, category, total }) => {
+const Transaction = ({ transaction = {}, category = {}, total = 0 }) => {
   const { amount, id, time, title, type } = transaction
   const { name, icon, color } = category
 
@@ -57,9 +57,9 @@ const Transaction = ({ transaction, category, total }) => {
 }
 
 Transaction.propTypes = {
-  transaction: PropTypes.object.isRequired,
-  category: PropTypes.object.isRequired,
-  total: PropTypes.number.isRequired
+  transaction: PropTypes.object,
+  category: PropTypes.object,
+  total: PropTypes.number
 }
 
 export default Transaction

@@ -1,4 +1,3 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styled from 'styled-components'
 
 const StyledOption = styled.li`
@@ -12,10 +11,4 @@ const StyledOption = styled.li`
   }
 `
 
-const StyledFontAwesomeIcon = styled(FontAwesomeIcon)`
-  color: ${({ color }) => color};
-  font-size: 1.3rem;
-  margin-left: 0.7rem;
-`
-
-export { StyledOption, StyledFontAwesomeIcon }
+export default StyledOption
