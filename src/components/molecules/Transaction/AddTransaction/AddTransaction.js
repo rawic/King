@@ -3,6 +3,7 @@ import Button from 'components/atoms/Button/Button'
 import Input from 'components/atoms/Input/Input'
 import { DropdownMenu } from 'components/molecules/Dropdown2/Dropdown.styles'
 import Dropdown2 from 'components/molecules/Dropdown2/Dropdown2'
+import { StyledOption } from 'components/molecules/Dropdown2/Option/Option.styles'
 import ListItem from 'components/molecules/ListItem/ListItem'
 import { ModalContext } from 'context/modalContext'
 import React, { useContext, useState } from 'react'
@@ -31,6 +32,13 @@ const StyledDropdown2 = styled(Dropdown2)`
     position: static;
     height: 250px;
     overflow: hidden;
+    box-shadow: none;
+  }
+  ${StyledOption} {
+    border-radius: 0.8rem;
+    &:hover {
+      background-color: hsla(0, 0%, 97%, 0.7);
+    }
   }
 `
 
@@ -82,6 +90,7 @@ const AddTransactionForm = () => {
       label="Transaction category"
       value={transaction.category}
       onChange={handleChange}
+      disabled="disabled"
     />
   )
 

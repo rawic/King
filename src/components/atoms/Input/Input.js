@@ -55,7 +55,7 @@ const StyledInput = styled.input`
 
 let inputTemplate
 
-const Input = ({ className, label, icon, name, placeholder, id, value, onChange }) => {
+const Input = ({ className, label, icon, name, placeholder, id, value, onChange, disabled }) => {
   if (icon) {
     inputTemplate = (
       <StyledWrapper>
@@ -66,6 +66,7 @@ const Input = ({ className, label, icon, name, placeholder, id, value, onChange 
           icon={icon}
           value={value}
           onChange={onChange}
+          disabled={disabled}
         />
         <StyledFontAwesomeIcon icon={icon} />
       </StyledWrapper>
@@ -78,6 +79,7 @@ const Input = ({ className, label, icon, name, placeholder, id, value, onChange 
         id={id}
         value={value}
         onChange={onChange}
+        disabled={disabled}
       />
     )
   }
@@ -98,7 +100,8 @@ Input.propTypes = {
   value: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   name: PropTypes.string,
   onChange: PropTypes.func.isRequired,
-  placeholder: PropTypes.string
+  placeholder: PropTypes.string,
+  disabled: PropTypes.string
 }
 
 export default Input
