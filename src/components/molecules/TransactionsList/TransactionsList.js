@@ -6,30 +6,29 @@ import Skeleton from 'skeletons/Skeleton'
 import { StyledTransactionsList } from './TransactionsList.styles'
 
 const TransactionsList = ({ transactions, categories, isLoading }) => {
+  const renderTransactions = transactions.map((transaction) => {
+    const total = transaction.total - transaction.amount
+    const category = categories.find((category) => category.id === transaction.category)
+
+    return (
+      <Transaction
+        transaction={transaction}
+        category={category}
+        total={total}
+        key={transaction.id}
+      />
+    )
+  })
+
+  const renderSkeletonTransactions = [...Array(5).keys()].map((i) => (
+    <Skeleton.Transaction key={i} />
+  ))
+
   return (
     <StyledTransactionsList layout="position">
-      {!isLoading &&
-        transactions.map((transaction) => {
-          const total = transaction.total - transaction.amount
-          const category = categories.find((category) => category.id === transaction.category)
+      {!isLoading && renderTransactions}
 
-          return (
-            <Transaction
-              transaction={transaction}
-              category={category}
-              total={total}
-              key={transaction.id}
-            />
-          )
-        })}
-
-      {isLoading && (
-        <Skeleton>
-          {[...Array(5).keys()].map((i) => (
-            <Skeleton.Transaction key={i} />
-          ))}
-        </Skeleton>
-      )}
+      {isLoading && <Skeleton>{renderSkeletonTransactions}</Skeleton>}
     </StyledTransactionsList>
   )
 }
