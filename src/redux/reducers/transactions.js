@@ -17,7 +17,7 @@ export const transactions = (state = initialState, action) => {
     case FETCH_TRANSACTIONS_SUCCESS:
       return { ...state, transactions: action.payload, loading: false }
     case ADD_TRANSACTION:
-      console.log(state)
+      console.log(action.payload)
       return { ...state, transactions: state.transactions.concat(action.payload) }
     case REMOVE_TRANSACTION:
       return { ...state, transactions: state.transactions.filter((t) => t.id !== action.payload) }

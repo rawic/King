@@ -11,12 +11,13 @@ const DropdownMenu = styled.div`
   right: 0;
   top: 100%;
   z-index: ${({ theme }) => theme.zindex.dropdown};
+  min-width: 150px;
 `
 
 const DropdownList = styled.ul`
   font-size: ${({ theme }) => theme.fontSize.xs};
   list-style-type: none;
-  min-width: 150px;
+  width: 100%;
 `
 
 const DropdownWrapper = styled.div`

@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import PropTypes from 'prop-types'
 import React from 'react'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
 const ButtonWrapper = styled.button`
   background: ${({ color, theme }) => color || theme.highlight};
@@ -17,6 +18,12 @@ const ButtonWrapper = styled.button`
   text-align: left;
   text-transform: uppercase;
   transition: background-color ${({ theme }) => theme.transition.duration.default};
+
+  ${({ left }) =>
+    left &&
+    css`
+      margin-left: ${left}rem;
+    `}
 
   &:hover {
     background-color: ${({ theme }) => theme.highlightDarker};
@@ -37,23 +44,20 @@ const IconWrapper = styled.span`
   width: 2.7rem;
 `
 
-const Button = ({ children, className, icon, color, ...props }) => {
-  if (icon) {
-    return (
-      <ButtonWrapper className={className} color={color} icon={icon} {...props}>
-        {children}{' '}
-        <IconWrapper>
-          <FontAwesomeIcon icon={icon} />
-        </IconWrapper>
-      </ButtonWrapper>
-    )
-  } else {
-    return (
-      <ButtonWrapper color={color} {...props}>
-        {children}
-      </ButtonWrapper>
-    )
-  }
+const Button = ({ children, icon, ...props }) => (
+  <ButtonWrapper icon={icon} {...props} type="button">
+    {children}
+    {icon && (
+      <IconWrapper>
+        <FontAwesomeIcon icon={icon} />
+      </IconWrapper>
+    )}
+  </ButtonWrapper>
+)
+
+Button.propTypes = {
+  children: PropTypes.node,
+  icon: PropTypes.string
 }
 
 export default Button

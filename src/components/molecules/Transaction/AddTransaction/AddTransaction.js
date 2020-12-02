@@ -1,6 +1,8 @@
+/* eslint-disable no-unused-vars */
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Button from 'components/atoms/Button/Button'
 import Input from 'components/atoms/Input/Input'
+import Label from 'components/atoms/Label/Label'
 import { DropdownList, DropdownMenu } from 'components/molecules/Dropdown2/Dropdown.styles'
 import Dropdown2 from 'components/molecules/Dropdown2/Dropdown2'
 import StyledOption from 'components/molecules/Dropdown2/Option/Option.styles'
@@ -27,7 +29,29 @@ const transactionPlaceholder = {
   total: 0
 }
 
-const StyledDropdown2 = styled(Dropdown2)`
+const ButtonWrapper = styled.div`
+  text-align: right;
+`
+
+const StyledButton = styled(Button)`
+  font-size: 1.4rem;
+  font-weight: ${({ theme }) => theme.fontWeight.extraBold};
+  margin-bottom: 2rem;
+  margin-right: 1.5rem;
+  text-align: center;
+  text-transform: none;
+  width: 10rem;
+  background-color: ${({ isActive, theme }) => (isActive ? theme.highlight : theme.secondary)};
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.15);
+  }
+  &:hover {
+    background-color: ${({ isActive, theme }) => (isActive ? theme.highlight : theme.secondary)};
+  }
+`
+
+const CategoriesSelect = styled(Dropdown2)`
   ${DropdownMenu} {
     position: relative;
     box-shadow: none;
@@ -56,13 +80,9 @@ const StyledDropdown2 = styled(Dropdown2)`
   }
 `
 
-// const StyledListItem = styled(ListItem)`
-//   background-color: 'red';
-//   ${({ isActive }) => {
-//     console.log(isActive)
-//     return isActive ? 'background-color: red;' : null
-//   }}
-// `
+const StyledInput = styled(Input)`
+  margin-bottom: 2rem;
+`
 
 const AddTransactionForm = () => {
   const [transaction, setTransaction] = useState(transactionPlaceholder)
@@ -86,10 +106,7 @@ const AddTransactionForm = () => {
   }
 
   const addTransation = (e) => {
-    e.preventDefault()
-
     const { title, type, amount } = transaction
-    console.log(formatDateWithTime(new Date()))
 
     const newTransaction = {
       id: uuidv4(),
@@ -105,7 +122,7 @@ const AddTransactionForm = () => {
   }
 
   const TransactionCategory = (
-    <Input
+    <StyledInput
       placeholder="Select transaction category"
       name="category"
       id="transaction_category"
@@ -118,7 +135,7 @@ const AddTransactionForm = () => {
 
   return (
     <form action="">
-      <Input
+      <StyledInput
         placeholder="Netflix subscription"
         name="title"
         id="transaction_type"
@@ -127,9 +144,27 @@ const AddTransactionForm = () => {
         onChange={handleChange}
       />
 
-      <StyledDropdown2 trigger={TransactionCategory} onChange={handleCategoryChange} open>
+      <Label>Transaction Type</Label>
+      <StyledButton
+        onClick={handleChange}
+        name="type"
+        value="income"
+        isActive={transaction.type === 'income'}
+      >
+        Income
+      </StyledButton>
+      <StyledButton
+        name="type"
+        onClick={handleChange}
+        value="outcome"
+        isActive={transaction.type === 'outcome'}
+      >
+        Outcome
+      </StyledButton>
+
+      <CategoriesSelect trigger={TransactionCategory} onChange={handleCategoryChange} open>
         {categories.map(({ id, color, icon, name }) => (
-          <StyledDropdown2.Option key={id} value={name}>
+          <CategoriesSelect.Option key={id} value={name}>
             <ListItem isActive={transaction.category === name}>
               <ListItem.Avatar color={color}>
                 <FontAwesomeIcon icon={icon} />
@@ -139,28 +174,25 @@ const AddTransactionForm = () => {
                 <ListItem.Text big>Incomes from my job</ListItem.Text>
               </ListItem.Content>
             </ListItem>
-          </StyledDropdown2.Option>
+          </CategoriesSelect.Option>
         ))}
-      </StyledDropdown2>
+      </CategoriesSelect>
 
-      <Input
+      <StyledInput
         placeholder={filterAmount(2345.32)}
         name="amount"
         id="transaction_amount"
         label="Transaction amount"
-        value={transaction.amount}
+        value={transaction.amount || ''}
         onChange={handleChange}
       />
 
-      <select name="type" id="" value={transaction.type} onChange={handleChange}>
-        <option value="income">Income</option>
-        <option value="outcome">Outcome</option>
-      </select>
-
-      <Button color="#CBD4E3">Cancel</Button>
-      <Button icon="angle-right" onClick={addTransation}>
-        New transaction
-      </Button>
+      <ButtonWrapper>
+        <Button color="#CBD4E3">Cancel</Button>
+        <Button icon="angle-right" onClick={addTransation} left="1.2">
+          New transaction
+        </Button>
+      </ButtonWrapper>
     </form>
   )
 }
